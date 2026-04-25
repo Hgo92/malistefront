@@ -27,4 +27,11 @@ export class Auth {
   logout() {
     localStorage.removeItem('token');
   }
+
+  getUsername(): string | null {
+  const token = this.getToken();
+  if (!token) return null;
+  const payload = JSON.parse(atob(token.split('.')[1])); // décode le JWT
+  return payload.sub; // "sub" contient l'username dans ton JwtService.java
+}
 }

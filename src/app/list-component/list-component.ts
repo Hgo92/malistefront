@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ItemComponent } from '../item-component/item-component';
 import { ItemService } from '../services/item';
 import { Item } from '../models/item';
+import { Auth } from '../services/auth';
 
 @Component({
   selector: 'app-list-component',
@@ -12,10 +13,12 @@ import { Item } from '../models/item';
 })
 export class ListComponent implements OnInit{
   items: Item[] = [];
+  username = '';
 
-  constructor(private itemService: ItemService) {}
+  constructor(private itemService: ItemService, private auth: Auth) {}
 
   ngOnInit() {
     this.itemService.getMyItems().subscribe(data => this.items = data);
+    this.username = this.auth.getUsername() ?? '';
   }
 }
