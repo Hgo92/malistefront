@@ -17,7 +17,7 @@ export class AuthComponent {
 
   onLogin() {
     this.auth.login(this.username, this.password).subscribe({
-      next: () => this.router.navigate(['/']), // Je dois terminer en rajoutant la route vers la page User
+      next: () => this.router.navigate(['/list']),
       error : () => console.error('Identifiants incorrects')
     });
   }
