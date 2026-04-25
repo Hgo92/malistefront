@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ItemComponent } from '../item-component/item-component';
+import { ItemService } from '../services/item';
+import { Item } from '../models/item';
 
 @Component({
   selector: 'app-list-component',
@@ -8,4 +10,12 @@ import { ItemComponent } from '../item-component/item-component';
   templateUrl: './list-component.html',
   styleUrl: './list-component.scss',
 })
-export class ListComponent {}
+export class ListComponent implements OnInit{
+  items: Item[] = [];
+
+  constructor(private itemService: ItemService) {}
+
+  ngOnInit() {
+    this.itemService.getMyItems().subscribe(data => this.items = data);
+  }
+}

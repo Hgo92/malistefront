@@ -10,6 +10,10 @@ export class Auth {
 
   constructor(private http: HttpClient) {}
 
+  register(username: string, password: string) {
+  return this.http.post<{token: string}>(`${this.apiUrl}/api/users/register`, { username, password });
+}
+
 
   login(username: string, password: string) {
   return this.http.post<{token: string}>(`${this.apiUrl}/auth/login`, { username, password })
