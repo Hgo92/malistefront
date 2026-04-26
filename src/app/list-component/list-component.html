@@ -1,10 +1,10 @@
 <h2>Bonjour {{ username }}</h2>
 
-<ng-container *ngIf="items.length > 0; else emptyList">
-  <app-item-component *ngFor="let item of items" [item]="item" (itemAdded)="onItemAdded()"/>
-</ng-container>
+<div *ngIf="items.length > 0; else emptyList">
+  <app-item-component *ngFor="let item of items" [item]="item"/>
+</div>
 
 <ng-template #emptyList>
   <p>Ta liste est vide !</p>
-  <button (click)="toAddComponent()">Ajouter un article</button> <!-- Faire le lien vers mon add component -->
+  <button (click)="toAddComponent()">Ajouter un article</button>
 </ng-template>

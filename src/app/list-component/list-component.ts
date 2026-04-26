@@ -19,12 +19,12 @@ export class ListComponent implements OnInit{
   constructor(private itemService: ItemService, private auth: Auth, private router: Router) {}
 
   ngOnInit() {
-    this.itemService.getMyItems().subscribe(data => this.items = data);
+    this.itemService.getMyItems().subscribe(data => 
+      {console.log('items reçus :', data);
+        this.items = data;
+        console.log('items.length :', this.items.length);
+      });
     this.username = this.auth.getUsername() ?? '';
-  }
-
-  onItemAdded() {
-    this.itemService.getMyItems().subscribe(data => this.items = data);
   }
 
   toAddComponent() {

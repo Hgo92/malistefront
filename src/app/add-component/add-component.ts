@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ItemService } from '../services/item';
 import { FormsModule } from '@angular/forms';
+import { Item } from '../models/item';
 
 @Component({
   selector: 'app-add-component',
@@ -10,7 +11,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class AddComponent {
   newItemName = '';
-
+  items: Item[] = [];
+  
   constructor(private item: ItemService) {}
 
   @Output() itemAdded = new EventEmitter<void>();
@@ -19,5 +21,9 @@ export class AddComponent {
     return this.item.add(this.newItemName).subscribe(() => {
       this.itemAdded.emit();
     });
+  }
+
+   onItemAdded() {
+    this.item.getMyItems().subscribe(data => this.items = data);
   }
 }
