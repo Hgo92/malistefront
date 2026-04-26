@@ -13,6 +13,17 @@ export class ItemService {
 
   add(name: string) {
     return this.http.post(`${this.apiUrl}/add`, { name });
-    
+  }
+
+  delete(id: number) {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  detach(id: number) {
+    return this.http.put(`${this.apiUrl}/${id}/detach`, {}, {responseType : 'text'});
+  }
+
+  attach(id: number) {
+    return this.http.put(`${this.apiUrl}/${id}/attach`, {}, {responseType : 'text'});
   }
 }

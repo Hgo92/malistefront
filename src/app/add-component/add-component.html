@@ -2,4 +2,5 @@
     <h2>Ajouter un article</h2>
     <input [(ngModel)]="newItemName" placeholder="Nom de l'article" />
     <button (click)="addItem()" (itemAdded)="onItemAdded()">Ajouter</button>
+    <button (click)="cancel()">Annuler</button>
 </div>

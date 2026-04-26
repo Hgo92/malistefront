@@ -5,6 +5,8 @@ import { ItemService } from '../services/item';
 import { Item } from '../models/item';
 import { Auth } from '../services/auth';
 import { Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
+import { map, switchMap, startWith, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-component',
@@ -13,18 +15,47 @@ import { Router } from '@angular/router';
   styleUrl: './list-component.scss',
 })
 export class ListComponent implements OnInit{
-  items: Item[] = [];
   username = '';
 
-  constructor(private itemService: ItemService, private auth: Auth, private router: Router) {}
+  private refresh$ = new Subject<void>();
+
+  items$: Observable<Item[]> = this.refresh$.pipe(
+    startWith(null),
+    switchMap(() => this.itemService.getMyItems()),
+    shareReplay(1)
+  );
+
+  activeItems$ = this.items$.pipe(
+    map(items => items.filter(item => !item.isArchived))
+  );
+
+  archivedItems$ = this.items$.pipe(
+    map(items => items.filter(item => item.isArchived))
+  );
+
+  constructor(
+    private itemService: ItemService, 
+    private auth: Auth, 
+    private router: Router) {}
 
   ngOnInit() {
-    this.itemService.getMyItems().subscribe(data => 
-      {console.log('items reçus :', data);
-        this.items = data;
-        console.log('items.length :', this.items.length);
-      });
     this.username = this.auth.getUsername() ?? '';
+  }
+
+  loadItems() {
+    this.refresh$.next();
+  }
+
+  onDetach(id : number) {
+    this.itemService.detach(id).subscribe(() => this.loadItems());
+  }
+
+  onAttach(id : number) {
+    this.itemService.attach(id).subscribe(() => this.loadItems());
+  }
+
+  onDelete(id: number) {
+    this.itemService.delete(id).subscribe(() => this.loadItems());
   }
 
   toAddComponent() {

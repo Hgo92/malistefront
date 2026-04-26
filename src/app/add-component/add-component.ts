@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { ItemService } from '../services/item';
 import { FormsModule } from '@angular/forms';
 import { Item } from '../models/item';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-component',
@@ -13,7 +14,7 @@ export class AddComponent {
   newItemName = '';
   items: Item[] = [];
   
-  constructor(private item: ItemService) {}
+  constructor(private item: ItemService, private router : Router) {}
 
   @Output() itemAdded = new EventEmitter<void>();
   
@@ -25,5 +26,9 @@ export class AddComponent {
 
    onItemAdded() {
     this.item.getMyItems().subscribe(data => this.items = data);
+  }
+
+  cancel() {
+    this.router.navigate(['/list'])
   }
 }
