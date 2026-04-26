@@ -10,4 +10,9 @@ export class ItemService {
   getMyItems() {
     return this.http.get<any[]>(`${this.apiUrl}/me`);
   }
+
+  add(name: string) {
+    return this.http.post(`${this.apiUrl}/add`, { name });
+    
+  }
 }
