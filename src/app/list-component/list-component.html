@@ -2,6 +2,7 @@
 
 <div *ngIf="items.length > 0; else emptyList">
   <app-item-component *ngFor="let item of items" [item]="item"/>
+  <button (click)="toAddComponent()">Ajouter un article</button>
 </div>
 
 <ng-template #emptyList>
