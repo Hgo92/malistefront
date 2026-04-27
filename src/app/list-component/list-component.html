@@ -6,7 +6,8 @@
     <app-item-component
       *ngFor="let item of activeItems"
       [item]="item"
-      (itemDetached)="onDetach($event)" />
+      (itemDetached)="onDetach($event)"
+      (quantityChanged)="loadItems()" />
     <button (click)="toAddComponent()">Ajouter un article</button>
   </div>
 </div>
@@ -25,6 +26,7 @@
       *ngFor="let item of archivedItems"
       [item]="item"
       (itemAttached)="onAttach($event)"
-      (itemDeleted)="onDelete($event)" />
+      (itemDeleted)="onDelete($event)" 
+      (quantityChanged)="loadItems()"/>
   </div>
 </div>

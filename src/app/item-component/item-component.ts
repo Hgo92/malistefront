@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Item } from '../models/item';
 import { CommonModule } from '@angular/common';
+import { ItemService } from '../services/item';
 
 
 @Component({
@@ -16,10 +17,32 @@ export class ItemComponent {
   @Output() itemDetached = new EventEmitter<number>();
   @Output() itemAttached = new EventEmitter<number>();
   @Output() itemDeleted = new EventEmitter<number>();
+  @Output() quantityChanged = new EventEmitter<void>();
+
+  constructor(private itemService: ItemService) {
+  }
 
   onDetach() { this.itemDetached.emit(this.item.id); }
   onAttach() { this.itemAttached.emit(this.item.id); }
   onDelete(event : MouseEvent) { 
     event.stopPropagation();
     this.itemDeleted.emit(this.item.id); }
+
+  
+  // Ma méthode pour +1 à la quantité
+  onPlus(event:MouseEvent) {
+    event.stopPropagation();
+    this.itemService.plus(this.item.id).subscribe(() => {
+      this.quantityChanged.emit();
+    });
+  }
+
+  // Ma méthode pour -1 à la quantité
+  onMinus(event:MouseEvent) {
+    event.stopPropagation();
+    if (this.item.quantity <=0) return;
+    this.itemService.minus(this.item.id).subscribe(() => {
+      this.quantityChanged.emit();
+    });
+  }
 }

@@ -26,4 +26,12 @@ export class ItemService {
   attach(id: number) {
     return this.http.put(`${this.apiUrl}/${id}/attach`, {}, {responseType : 'text'});
   }
+
+  plus(id: number) {
+    return this.http.put(`${this.apiUrl}/${id}/plus`, {}, {responseType: 'text'});
+  }
+
+  minus(id: number) {
+    return this.http.put(`${this.apiUrl}/${id}/minus`, {}, {responseType: 'text'});
+  }
 }
