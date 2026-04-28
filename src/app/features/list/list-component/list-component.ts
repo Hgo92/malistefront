@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { ItemComponent } from '../item-component/item-component';
 import { ItemService } from '../services/item';
 import { Item } from '../models/item';
-import { Auth } from '../services/auth';
+import { Auth } from '../../authentification/services/auth';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { map, switchMap, startWith, shareReplay } from 'rxjs/operators';
-import { HeaderComponent } from '../header-component/header-component';
+import { HeaderComponent } from '../../header-component/header-component';
 
 
 @Component({
