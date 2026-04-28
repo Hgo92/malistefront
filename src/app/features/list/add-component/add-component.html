@@ -4,6 +4,6 @@
     <input matInput [(ngModel)]="newItemNumber" type="number"/>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button (click)="addItem()" (itemAdded)="onItemAdded()">Ajouter</button>
-    <button (click)="cancel()">Annuler</button>
+    <button (click)="addItem()" mat-dialog-close>Ajouter</button>
+    <button (click)="cancel()" mat-dialog-close>Annuler</button>
 </mat-dialog-actions>

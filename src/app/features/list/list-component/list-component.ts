@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { map, switchMap, startWith, shareReplay } from 'rxjs/operators';
 import { HeaderComponent } from '../../header-component/header-component';
+import { MatDialog } from '@angular/material/dialog';
+import { AddComponent } from '../add-component/add-component';
 
 
 @Component({
@@ -38,7 +40,9 @@ export class ListComponent implements OnInit{
   constructor(
     private itemService: ItemService, 
     private auth: Auth, 
-    private router: Router) {}
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.username = this.auth.getUsername() ?? '';
@@ -61,6 +65,11 @@ export class ListComponent implements OnInit{
   }
 
   toAddComponent() {
-    this.router.navigate(['/add']);
+      const dialogRef = this.dialog.open(AddComponent, {
+        height: '200px',
+        width: '200px'
+      });
+
+      dialogRef.afterClosed().subscribe(() => this.loadItems())
   }
 }

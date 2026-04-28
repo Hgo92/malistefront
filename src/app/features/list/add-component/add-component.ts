@@ -3,7 +3,7 @@ import { ItemService } from '../services/item';
 import { FormsModule } from '@angular/forms';
 import { Item } from '../models/item';
 import { Router } from '@angular/router';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-component',
@@ -14,21 +14,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 export class AddComponent {
   newItemName = '';
   newItemNumber = 1;
-  items: Item[] = [];
   
-  constructor(private item: ItemService, private router : Router) {}
-
-  @Output() itemAdded = new EventEmitter<void>();
+  
+  constructor(private item: ItemService, private router : Router, private dialogRef: MatDialogRef<AddComponent>) {}
   
   addItem() {
     return this.item.add(this.newItemName).subscribe(() => {
-      this.itemAdded.emit();
-      this.router.navigate(['/list'])
-    });
-  }
+      this.dialogRef.close(true);
 
-   onItemAdded() {
-    this.item.getMyItems().subscribe(data => this.items = data);
+    });
   }
 
   cancel() {
