@@ -1,6 +1,9 @@
-<div>
-    <h2>Ajouter un article</h2>
-    <input [(ngModel)]="newItemName" placeholder="Nom de l'article" />
+<h2>Ajouter un article</h2>
+<mat-dialog-content>
+    <input matInput [(ngModel)]="newItemName" placeholder="Nom de l'article" />
+    <input matInput [(ngModel)]="newItemNumber" type="number"/>
+</mat-dialog-content>
+<mat-dialog-actions>
     <button (click)="addItem()" (itemAdded)="onItemAdded()">Ajouter</button>
     <button (click)="cancel()">Annuler</button>
-</div>
+</mat-dialog-actions>
