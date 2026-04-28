@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Auth } from '../../authentification/services/auth';
 
 @Component({
   selector: 'app-home-component',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrl: './home-component.scss',
 })
 export class HomeComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth : Auth) {}
 
   toLogin() {
     this.router.navigate(['/login']);
@@ -16,5 +17,12 @@ export class HomeComponent {
 
   toRegister() {
     this.router.navigate(['/register']);
+  }
+
+  toTest() {
+    this.auth.login('Invité', 'mdpTestInvité').subscribe({
+      next: () => this.router.navigate(['/list']),
+      error : () => console.error('Identifiants incorrects')
+    });
   }
 }
