@@ -7,10 +7,12 @@ import { Auth } from '../services/auth';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { map, switchMap, startWith, shareReplay } from 'rxjs/operators';
+import { HeaderComponent } from '../header-component/header-component';
+
 
 @Component({
   selector: 'app-list-component',
-  imports: [CommonModule, ItemComponent],
+  imports: [CommonModule, ItemComponent, HeaderComponent],
   templateUrl: './list-component.html',
   styleUrl: './list-component.scss',
 })
