@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '../authentification/services/auth';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmLogoutComponent } from '../authentification/confirm-logout-component/confirm-logout-component';
 
 @Component({
   selector: 'app-header-component',
@@ -11,18 +13,17 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   username = "";
 
-constructor(private auth : Auth, private router : Router) {}
+constructor(private auth : Auth, private router : Router, private dialog : MatDialog) {}
 
 ngOnInit(): void {
   this.username = this.auth.getUsername() ?? '';
 }
 
-onLogout() {
-  const confirmed = window.confirm('Voulez-vous vraiment vous déconnecter ?');
-  if (!confirmed) return;
-  
-  this.auth.logout();
-  this.router.navigate(['/login']);
+openDialog() {
+  const dialogRef = this.dialog.open(ConfirmLogoutComponent, {
+    height: '400px',
+    width: '600px'
+  })
 }
 
 onCancel() {
