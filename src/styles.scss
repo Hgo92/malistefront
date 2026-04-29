@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+// Variables
+$primary-color: #2ecc71; // Vert frais
+$accent-color: #3498db;  // Bleu pour les actions secondaires
+$warn-color: #e74c3c;    // Rouge pour la suppression
+$bg-color: #f8f9fa;
+$text-color: #2c3e50;
+$card-bg: #ffffff;
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: $bg-color;
+  color: $text-color;
+  display: flex;
+  justify-content: center;
+}
+
+// Style global pour les boutons Material et classiques
+button {
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  padding: 8px 16px;
+  transition: all 0.2s ease;
+  font-weight: 600;
+
+  &:hover { opacity: 0.85; transform: translateY(-1px); }
+  &:active { transform: translateY(0); }
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}

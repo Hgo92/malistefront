@@ -1,0 +1,10 @@
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px 0;
+}
+
+button {
+  &[click="addItem()"] { background: #2ecc71; color: white; }
+}
