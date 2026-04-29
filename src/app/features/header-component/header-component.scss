@@ -1,6 +1,7 @@
 div {
   display: flex;
-  justify-content: space-between;
+  width: 90%;
+  justify-content: space-around;
   align-items: center;
   padding: 15px 20px;
   background: #2c3e50;
@@ -8,17 +9,15 @@ div {
   border-radius: 0 0 15px 15px;
   margin-bottom: 20px;
 
+
   span:first-child {
     font-weight: bold;
     letter-spacing: 1px;
   }
 
-  button {
-    background: transparent;
-    border: 1px solid white;
-    color: white;
-    font-size: 0.8rem;
-    
-    &:hover { background: white; color: #2c3e50; }
+  .buttonLogout {
+    background: #3498db;
   }
+
+  
 }

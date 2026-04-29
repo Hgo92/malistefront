@@ -13,7 +13,26 @@ body {
   color: $text-color;
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 100%;
 }
+
+app-root {
+
+  display: block;
+  width: 100%;
+  max-width: 70dvw;
+  margin: 35px auto;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background-color: $card-bg;
+  
+
+}
+
+
+
 
 input {
   padding: 10px;
@@ -37,7 +56,7 @@ button {
   outline: none;
   cursor: pointer;
   font-family: sans-serif;
-  max-width: 10dvh;
+  max-width: 50%;
   max-height: 5dvh;
 }
 
@@ -105,9 +124,4 @@ button:active .shadow {
 button:active .front {
   transform: translateY(-2px);
   transition: transform 34ms;
-}
-
-/* Disable text selection */
-button .front span {
-  user-select: none;
 }
