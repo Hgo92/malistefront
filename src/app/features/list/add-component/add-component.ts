@@ -18,13 +18,14 @@ export class AddComponent {
   
   constructor(private item: ItemService, private router : Router, private dialogRef: MatDialogRef<AddComponent>) {}
   
+  // Ma méthode pour valider l'envoi d'un item
   addItem() {
     return this.item.add(this.newItemName).subscribe(() => {
       this.dialogRef.close(true);
-
     });
   }
 
+  // Ma méthode pour annuler et revenir à la liste
   cancel() {
     this.router.navigate(['/list'])
   }

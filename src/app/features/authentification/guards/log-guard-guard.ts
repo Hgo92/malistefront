@@ -7,6 +7,7 @@ export const logGuard: CanActivateFn = () => {
   const auth = inject(Auth);
   const router = inject(Router);
 
+  // Ce guard vérifie si l'utilisateur est connecté (true si connecté)
   if (auth.isLoggedIn()) {
     return true;
   }

@@ -44,14 +44,17 @@ export class ListComponent implements OnInit{
     private dialog: MatDialog
   ) {}
 
+  // Au lancement, je récupère l'username pour pouvoir l'afficher
   ngOnInit() {
     this.username = this.auth.getUsername() ?? '';
   }
 
+  // Méthode pour recharger mes items si besoin
   loadItems() {
     this.refresh$.next();
   }
 
+  // Mes méthodes pour détacher un item d'une liste, l'attacher et le supprimer
   onDetach(id : number) {
     this.itemService.detach(id).subscribe(() => this.loadItems());
   }
@@ -64,6 +67,7 @@ export class ListComponent implements OnInit{
     this.itemService.delete(id).subscribe(() => this.loadItems());
   }
 
+  // Mon Dialog/modale pour ajouter un item
   toAddComponent() {
       const dialogRef = this.dialog.open(AddComponent, {
         height: '200px',

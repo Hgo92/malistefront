@@ -11,17 +11,19 @@ export class Auth {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  // Méthode pour enregistrer un nouvel utilisateur
   register(username: string, password: string) {
   return this.http.post<{token: string}>(`${this.apiUrl}/api/users/register`, { username, password })
   .pipe(tap(res => localStorage.setItem('token', res.token)));
 }
 
-
+  // Méthode pour se connecter
   login(username: string, password: string) {
   return this.http.post<{token: string}>(`${this.apiUrl}/auth/login`, { username, password })
     .pipe(tap(res => localStorage.setItem('token', res.token)));
 }
 
+  // Méthode pour checker dans le local storage si l'utilisateur est connecté (et si le token n'est pas expiré)
   getToken() {
     const token = localStorage.getItem('token');
     if (!token) return null 
@@ -34,6 +36,7 @@ export class Auth {
     return token
   }
 
+  // Méthode pour checker si le token est expiré
   isTokenExpired(token?: string) : boolean {
     const t = token ?? localStorage.getItem('token');
     if (!t) return true
@@ -48,15 +51,18 @@ export class Auth {
 
   }
 
+  // Méthode pour checker si l'utilisateur est connecté
   isLoggedIn() {
     return this.getToken() !== null;
   }
 
+  // Méthode pour se déconnecter
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 
+  // Méthode pour récupérer le nom d'utilisateur (à partir du token)
   getUsername(): string | null {
   const token = this.getToken();
   if (!token) return null;

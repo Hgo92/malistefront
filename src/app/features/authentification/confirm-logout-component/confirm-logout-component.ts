@@ -12,8 +12,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 })
 export class ConfirmLogoutComponent {
 
-    constructor(private auth : Auth, private router : Router) {}
+  constructor(private auth : Auth, private router : Router) {}
 
+  // Ma méthode pour me déconnecter
   onLogout() {
     this.auth.logout();
     this.router.navigate(['/']);

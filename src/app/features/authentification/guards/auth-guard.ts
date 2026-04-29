@@ -6,6 +6,7 @@ export const authGuard: CanActivateFn = () => {
   const authService = inject(Auth);
   const router = inject(Router);
 
+  // Ce guard vérifie si l'utilisateur est connecté (false si connecté)
   if (authService.getToken()) {
     router.navigate(['/list']);
     return false;

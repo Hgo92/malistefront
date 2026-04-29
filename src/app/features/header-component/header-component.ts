@@ -19,6 +19,7 @@ ngOnInit(): void {
   this.username = this.auth.getUsername() ?? '';
 }
 
+// La méthode qui ouvre ma modale
 openDialog() {
   const dialogRef = this.dialog.open(ConfirmLogoutComponent, {
     height: '400px',
