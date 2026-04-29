@@ -1,8 +1,15 @@
-<div [class.archived]="item.isArchived" (click)="item.isArchived ? onAttach() : onDetach()">
-  <button *ngIf="item.isArchived" (click)="onDelete($event)">❌</button>
-  <span>{{ item.name }}</span>
-  <span>
+<div class="item-card" [class.archived]="item.isArchived">
+  <button class="delete-btn" *ngIf="item.isArchived" (click)="onDelete($event)">
+    ✕
+  </button>
+
+  <div class="item-main" (click)="item.isArchived ? onAttach() : onDetach()">
+    <span class="item-name">{{ item.name }}</span>
+  </div>
+
+  <div class="quantity-controls">
     <button (click)="onMinus($event)">-</button>
-    {{ item.quantity }}
-    <button (click)="onPlus($event)">+</button></span>
+    <span class="quantity-value">{{ item.quantity }}</span>
+    <button (click)="onPlus($event)">+</button>
+  </div>
 </div>

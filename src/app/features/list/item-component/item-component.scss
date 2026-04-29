@@ -1,42 +1,56 @@
-.item-container {
+@use '../../../../styles/variables' as vars;
+
+:host {
+  display: inline-block; // Permet l'enchaînement horizontal
+}
+
+.item-card {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
   background: white;
-  padding: 12px 15px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  cursor: pointer;
+  border-radius: 25px; // Forme "pilule" plus moderne pour des petites cards
+  border: 1px solid #edf2f7;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  white-space: nowrap; // Empêche le texte de revenir à la ligne dans la card
 
-  &.archived {
-    background-color: #eeeeee;
-    color: #95a5a6;
-    text-decoration: line-through;
-    opacity: 0.7;
-    
-    span { color: #95a5a6; }
+  &:hover {
+    border-color: vars.$primary;
+    background: #f0fff4; // Léger reflet vert au survol
+    transform: translateY(-1px);
   }
 
-  .quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    
-    button {
-      background: #eee;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      padding: 0;
-    }
+  &.archived {
+    background: #f8fafc;
+    opacity: 0.7;
+    border-style: dashed;
   }
 }
 
-.delete-btn {
-  background: none;
-  border: none;
-  color: #e74c3c;
-  font-size: 1.2rem;
-  margin-right: 10px;
+// On réduit un peu la taille des contrôles pour que ce soit compact
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 15px;
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: vars.$primary;
+    padding: 0 4px;
+    
+    &:hover { color: vars.$primary-dark; }
+  }
+  
+  .quantity-value {
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
 }

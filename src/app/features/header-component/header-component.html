@@ -1,11 +1,17 @@
-<div>
-    <span>Ma Liste</span>
-    <span>{{username}}</span>
-    <button (click)="openDialog()">
+<div class="header">
+    <div class="logo">
+        <span>🛒</span> <span>Ma Liste</span>
+    </div>
+
+    <div class="user-badge">
+        {{username}}
+    </div>
+
+    <button class="logout-button" (click)="openDialog()">
         <span class="shadow"></span>
         <span class="edge"></span>
         <div class="front">
-            <span>Se déconnecter</span>
+            <span>Déconnexion</span>
         </div>
     </button>
 </div>

@@ -1,6 +1,23 @@
-mat-dialog-actions {
-  justify-content: flex-end;
-  gap: 10px;
-  
-  button:first-child { background: #e74c3c; color: white; }
+@use '../../../../styles/variables' as vars;
+
+.logout-dialog {
+  padding: 10px;
+  text-align: center;
+
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+    color: vars.$text-main;
+  }
+
+  .dialog-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+    button {
+      width: auto; // On ne veut pas qu'ils prennent toute la largeur ici
+      min-width: 120px;
+    }
+  }
 }

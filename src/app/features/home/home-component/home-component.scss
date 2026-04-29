@@ -1,21 +1,28 @@
-:host {
+@use '../../../../styles/variables' as vars;
+
+.home-container {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-}
+  padding: 40px 20px;
 
-h1 { color: #2ecc71; font-size: 2.5rem; margin-bottom: 0; }
-p { font-style: italic; color: #7f8c8d; margin-bottom: 30px; }
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, vars.$primary, vars.$accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-button {
-  width: 250px;
-  margin: 10px 0;
-  padding: 15px;
-  
-  &.login-btn { background: #2ecc71; color: white; }
-  &.register-btn { background: #3498db; color: white; }
-  &.test-btn { background: #95a5a6; color: white; }
+  p {
+    color: vars.$text-light;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+  }
+
+  .auth-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 300px;
+    margin: 0 auto;
+  }
 }

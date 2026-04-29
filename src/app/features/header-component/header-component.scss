@@ -1,23 +1,42 @@
-div {
+@use '../../../styles/variables' as vars;
+
+.header {
   display: flex;
-  width: 90%;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
-  background: #2c3e50;
-  color: white;
-  border-radius: 0 0 15px 15px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f2f5;
   margin-bottom: 20px;
+  gap: 15px; // Ajoute un espace entre les éléments si l'écran rétrécit
 
-
-  span:first-child {
-    font-weight: bold;
-    letter-spacing: 1px;
+  .logo {
+    font-size: 1.2rem; // Un peu plus petit pour laisser de la place au bouton
+    font-weight: 800;
+    color: vars.$primary;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
   }
 
-  .buttonLogout {
-    background: #3498db;
+  .user-badge {
+    background: #f0f2f5;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: vars.$text-main;
+    white-space: nowrap;
   }
 
-  
+  .logout-button {
+    width: auto; 
+    margin: 0 20px 0 0;   
+    
+    .front {
+      padding: 8px 15px; // Un padding plus compact pour le header
+      font-size: 0.85rem;
+      background: vars.$warn; // On utilise la couleur d'alerte pour la déconnexion
+    }
+  }
 }
