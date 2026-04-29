@@ -1,9 +1,30 @@
 <h2>Ajouter un article</h2>
 <mat-dialog-content>
-    <input matInput [(ngModel)]="newItemName" placeholder="Nom de l'article" />
-    <input matInput [(ngModel)]="newItemNumber" type="number"/>
+    <div class="addInput">
+        <input required id="name" matInput [(ngModel)]="newItemName" placeholder="Nom de l'article" />
+    </div>
+
+    <div class="addInput">
+        <label for="quantity">Quantité</label>
+        <input min="1" max="99" id="quantity" matInput [(ngModel)]="newItemNumber" type="number"/>
+    </div>
 </mat-dialog-content>
+
 <mat-dialog-actions>
-    <button (click)="addItem()" mat-dialog-close>Ajouter</button>
-    <button (click)="cancel()" mat-dialog-close>Annuler</button>
+    <div class="buttonDiv">
+        <button (click)="addItem()" mat-dialog-close>
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <div class="front">
+                <span>Ajouter</span>
+            </div>
+        </button>
+        <button (click)="cancel()" mat-dialog-close>
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <div class="front">
+                <span>Annuler</span>
+            </div>
+        </button>
+    </div>
 </mat-dialog-actions>

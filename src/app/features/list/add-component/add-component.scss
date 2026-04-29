@@ -1,10 +1,54 @@
 mat-dialog-content {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 20px 0;
+  gap: 10px;
+  padding: 5px 0;
+  margin: 5px;
 }
 
 button {
   &[click="addItem()"] { background: #2ecc71; color: white; }
+}
+
+* {
+  text-align: center;
+}
+
+.addInput {
+  gap : 10px;
+  display : flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
+
+}
+
+.addInput label {
+  align-self: center;
+  line-height: normal;
+  margin: 0;
+}
+
+#name {
+  max-width: 20dvh;
+}
+
+#quantity {
+  max-width: 7dvh;
+  margin-bottom: 0;
+}
+
+.buttonDiv {
+  display : flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-dialog-actions {
+  padding: 10px !important;
+  justify-content: center !important;
+  margin: 0px 10px 20px 10px;
 }

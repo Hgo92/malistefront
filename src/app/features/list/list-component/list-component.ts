@@ -70,8 +70,8 @@ export class ListComponent implements OnInit{
   // Mon Dialog/modale pour ajouter un item
   toAddComponent() {
       const dialogRef = this.dialog.open(AddComponent, {
-        height: '200px',
-        width: '200px'
+        height: '250px',
+        width: '300px'
       });
 
       dialogRef.afterClosed().subscribe(() => this.loadItems())
