@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class Auth {
-  private apiUrl= 'https://maliste.fly.dev ';
+  private apiUrl= 'https://maliste.fly.dev';
 
   constructor(private http: HttpClient, private router: Router) {}
 
