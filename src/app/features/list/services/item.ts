@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class ItemService {
-  private apiUrl = 'http://localhost:8080/api/items';
+  private apiUrl = 'https://maliste.fly.dev/api/items';
 
   constructor(private http: HttpClient) {}
 
