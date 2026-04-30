@@ -22,8 +22,8 @@ ngOnInit(): void {
 // La méthode qui ouvre ma modale
 openDialog() {
   const dialogRef = this.dialog.open(ConfirmLogoutComponent, {
-    height: '400px',
-    width: '600px'
+    height: '250px',
+    width: '400px'
   })
 }
 

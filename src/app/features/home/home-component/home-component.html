@@ -1,7 +1,30 @@
+<div class="buttonDiv">
+
 <h1>Bienvenue sur Ma Liste</h1>
 
 <p>Le site pour vous éviter de devoir retourner au magasin dix-huit fois !</p>
 
-<button (click)="toLogin()">Me connecter</button>
-<button (click)="toRegister()">Créer un compte</button>
-<button (click)="toTest()">Tester</button>
+    <button (click)="toLogin()">
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <div class="front">
+            <span>Me connecter</span>
+        </div>
+    </button>
+
+    <button (click)="toRegister()">
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <div class="front">
+            <span>Créer mon compte</span>
+        </div>
+    </button>
+
+    <button (click)="toTest()">
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <div class="front">
+            <span>Tester comme invité</span>
+        </div>
+    </button>
+</div>

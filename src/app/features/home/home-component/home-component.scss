@@ -1,12 +1,9 @@
 @use '../../../../styles/variables' as vars;
 
-.home-container {
-  text-align: center;
-  padding: 40px 20px;
-
   h1 {
-    font-size: 2.2rem;
-    margin-bottom: 10px;
+    font-size: 2rem;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
     background: linear-gradient(to right, vars.$primary, vars.$accent);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -14,8 +11,8 @@
 
   p {
     color: vars.$text-light;
-    font-size: 1.1rem;
-    margin-bottom: 40px;
+    font-size: 1rem;
+    margin: 0 60px 20px 60px;
   }
 
   .auth-actions {
@@ -25,4 +22,15 @@
     max-width: 300px;
     margin: 0 auto;
   }
+
+button {
+  max-width : 50%;
+}
+
+.buttonDiv {
+  display : flex;
+  flex-direction : column;
+  flex-wrap: nowrap;
+  align-items: center;
+  text-align: center;
 }

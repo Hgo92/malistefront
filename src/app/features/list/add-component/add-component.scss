@@ -2,6 +2,7 @@
 
 .add-container {
   padding: 10px;
+  
 
   .field-group {
     margin-bottom: 20px;
@@ -24,4 +25,14 @@
       flex: 1;
     }
   }
+}
+
+mat-dialog-content {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+mat-dialog-actions {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
 }

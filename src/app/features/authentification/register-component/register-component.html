@@ -1,6 +1,23 @@
 <div>
+  <h2>Créer mon compte</h2>
   <input [(ngModel)]="username" placeholder="Nom d'utilisateur" />
   <input [(ngModel)]="password" type="password" placeholder="Mot de passe" />
-  <button (click)="onRegister()">S'inscrire</button>
-  <button (click)="onCancel()">Annuler</button>
+
+  <div class="buttonDiv">
+    <button (click)="onRegister()">
+      <span class="shadow"></span>
+      <span class="edge"></span>
+      <div class="front">
+        <span>S'inscrire</span>
+      </div>
+    </button>
+    
+    <button (click)="onCancel()">
+      <span class="shadow"></span>
+      <span class="edge"></span>
+      <div class="front">
+        <span>Annuler</span>
+      </div>
+    </button>
+  </div>
 </div>

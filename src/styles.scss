@@ -27,7 +27,7 @@ app-root {
   background: $card-bg;
   border-radius: $radius;
   box-shadow: $shadow;
-  min-height: 80vh;
+  min-height: 35dvh;
 }
 
 h1, h2, h3 {
@@ -133,3 +133,13 @@ button {
   }
 }
 
+.mat-mdc-dialog-content {
+  overflow: hidden !important;
+}
+
+.mat-mdc-dialog-actions {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

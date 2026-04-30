@@ -1,23 +1,12 @@
 @use '../../../../styles/variables' as vars;
 
-.logout-dialog {
-  padding: 10px;
-  text-align: center;
+button {
+  max-width : 50%;
+}
 
-  h2 {
-    font-size: 1.3rem;
-    margin-bottom: 25px;
-    color: vars.$text-main;
-  }
-
-  .dialog-actions {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-
-    button {
-      width: auto; // On ne veut pas qu'ils prennent toute la largeur ici
-      min-width: 120px;
-    }
-  }
+.buttonDiv {
+  display : flex;
+  flex-direction : column;
+  flex-wrap: nowrap;
+  align-items: center;
 }

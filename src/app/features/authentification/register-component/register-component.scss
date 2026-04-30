@@ -1,0 +1,10 @@
+button {
+  max-width : 50%;
+}
+
+.buttonDiv {
+  display : flex;
+  flex-direction : column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
