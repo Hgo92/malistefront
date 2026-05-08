@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from '../services/auth';
 import { FormsModule } from '@angular/forms';
@@ -13,8 +13,11 @@ import { FormsModule } from '@angular/forms';
 export class RegisterComponent {
   username = '';
   password = '';
+  
+  private readonly router = inject(Router);
+  private readonly auth = inject(Auth);
 
-  constructor(private router: Router, private auth: Auth) {}
+  constructor() {}
 
   onRegister() {this.auth.register(this.username, this.password).subscribe({
     next: () => this.router.navigate(['/login']), 

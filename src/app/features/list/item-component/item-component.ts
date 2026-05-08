@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Item } from '../models/item';
 import { CommonModule } from '@angular/common';
 import { ItemService } from '../services/item';
@@ -11,6 +11,7 @@ import { ItemService } from '../services/item';
   styleUrl: './item-component.scss',
   standalone: true
 })
+
 export class ItemComponent {
   @Input() item!: Item;
 
@@ -19,7 +20,9 @@ export class ItemComponent {
   @Output() itemDeleted = new EventEmitter<number>();
   @Output() quantityChanged = new EventEmitter<void>();
 
-  constructor(private itemService: ItemService) {
+  private readonly itemService = inject(ItemService);
+
+  constructor() {
   }
 
   onDetach() { this.itemDetached.emit(this.item.id); }

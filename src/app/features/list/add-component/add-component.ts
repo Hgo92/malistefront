@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { ItemService } from '../services/item';
 import { FormsModule } from '@angular/forms';
 import { Item } from '../models/item';
@@ -15,8 +15,9 @@ export class AddComponent {
   newItemName = '';
   newItemNumber = 1;
   
-  
-  constructor(private item: ItemService, private router : Router, private dialogRef: MatDialogRef<AddComponent>) {}
+  private readonly router = inject(Router);
+  private readonly item = inject(ItemService);
+  private readonly dialogRef = inject(MatDialogRef<AddComponent>);
   
   // Ma méthode pour valider l'envoi d'un item
   addItem() {

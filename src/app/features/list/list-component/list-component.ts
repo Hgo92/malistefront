@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ItemComponent } from '../item-component/item-component';
 import { ItemService } from '../services/item';
 import { Item } from '../models/item';
 import { Auth } from '../../authentification/services/auth';
-import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { map, switchMap, startWith, shareReplay } from 'rxjs/operators';
 import { HeaderComponent } from '../../header-component/header-component';
@@ -18,6 +17,7 @@ import { AddComponent } from '../add-component/add-component';
   templateUrl: './list-component.html',
   styleUrl: './list-component.scss',
 })
+
 export class ListComponent implements OnInit{
   username = '';
 
@@ -37,12 +37,11 @@ export class ListComponent implements OnInit{
     map(items => items.filter(item => item.isArchived))
   );
 
-  constructor(
-    private itemService: ItemService, 
-    private auth: Auth, 
-    private router: Router,
-    private dialog: MatDialog
-  ) {}
+  private readonly auth = inject(Auth);
+  private readonly itemService = inject(ItemService);
+  private readonly dialog = inject(MatDialog);
+
+  constructor() {}
 
   // Au lancement, je récupère l'username pour pouvoir l'afficher
   ngOnInit() {

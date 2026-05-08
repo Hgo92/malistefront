@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Auth } from '../services/auth';
 import { Router } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -10,9 +10,10 @@ import { MatDialogModule } from '@angular/material/dialog';
   templateUrl: './confirm-logout-component.html',
   styleUrl: './confirm-logout-component.scss',
 })
-export class ConfirmLogoutComponent {
 
-  constructor(private auth : Auth, private router : Router) {}
+export class ConfirmLogoutComponent {
+  private readonly auth = inject(Auth);
+  private readonly router = inject(Router);
 
   // Ma méthode pour me déconnecter
   onLogout() {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { tap } from 'rxjs/internal/operators/tap';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
 export class Auth {
   private apiUrl= 'https://malisteback.zapto.org';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  private readonly http = inject(HttpClient);
+  private readonly router = inject(Router);
+
+  constructor() {}
 
   // Méthode pour enregistrer un nouvel utilisateur
   register(username: string, password: string) {
@@ -32,7 +35,6 @@ export class Auth {
       this.logout();
       return null
     }
-
     return token
   }
 
@@ -48,7 +50,6 @@ export class Auth {
     } catch {
       return true
     }
-
   }
 
   // Méthode pour checker si l'utilisateur est connecté

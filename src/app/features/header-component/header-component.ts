@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Auth } from '../authentification/services/auth';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,7 +13,11 @@ import { ConfirmLogoutComponent } from '../authentification/confirm-logout-compo
 export class HeaderComponent implements OnInit {
   username = "";
 
-constructor(private auth : Auth, private router : Router, private dialog : MatDialog) {}
+  private readonly auth = inject(Auth);
+  private readonly router = inject(Router);
+  private readonly dialog = inject(MatDialog);
+
+constructor() {}
 
 ngOnInit(): void {
   this.username = this.auth.getUsername() ?? '';

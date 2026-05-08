@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from '../../authentification/services/auth';
 
@@ -9,7 +9,11 @@ import { Auth } from '../../authentification/services/auth';
   styleUrl: './home-component.scss',
 })
 export class HomeComponent {
-  constructor(private router: Router, private auth : Auth) {}
+
+  private readonly auth = inject(Auth);
+  private readonly router = inject(Router);
+
+  constructor() {}
 
   toLogin() {
     this.router.navigate(['/login']);

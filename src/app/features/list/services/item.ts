@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class ItemService {
   private apiUrl = 'https://malisteback.zapto.org/api/items';
 
-  constructor(private http: HttpClient) {}
+  private readonly http = inject(HttpClient)
+
+  constructor() {}
 
   getMyItems() {
     return this.http.get<any[]>(`${this.apiUrl}/me`);
