@@ -1,10 +1,15 @@
 <div>
   <h2>Créer mon compte</h2>
-  <input [(ngModel)]="username" placeholder="Nom d'utilisateur" />
-  <input [(ngModel)]="password" type="password" placeholder="Mot de passe" />
+  <form [formRoot]="registerForm">
+    <label>Nom
+      <input type="text" [formField]="registerForm.username" placeholder="Nom d'utilisateur"/>
+    </label>
+    <label>Mot de passe
+      <input type="password" [formField]="registerForm.password" placeholder="Mot de passe"/>
+    </label>
 
-  <div class="buttonDiv">
-    <button (click)="onRegister()">
+    <div (click)="onSubmit()" class="buttonDiv">
+    <button type="submit">
       <span class="shadow"></span>
       <span class="edge"></span>
       <div class="front">
@@ -20,4 +25,8 @@
       </div>
     </button>
   </div>
+  
+</form>
+
+
 </div>
