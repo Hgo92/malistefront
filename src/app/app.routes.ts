@@ -8,7 +8,7 @@ import { RegisterComponent } from './features/authentification/register-componen
 import { ListComponent } from './features/list/list-component/list-component';
 
 export const routes: Routes = [
-    {
+    {   path : "",
         canActivate : [authGuard],
         children: [
             { path: '', component: HomeComponent},
