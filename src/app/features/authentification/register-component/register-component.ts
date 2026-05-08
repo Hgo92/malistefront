@@ -35,10 +35,11 @@ export class RegisterComponent {
     {
       submission : {
         action: async (field) => {
-          const { username, password } = field().value()
+          const { username, password } = this.registerModel()
           
           try {
             await firstValueFrom(this.auth.register(username, password));
+            await this.router.navigate(['/login']);
             return;
           } catch (error) {
             return { kind : 'serverError', message: "L'inscription n'a pas fonctionné"}
@@ -48,15 +49,6 @@ export class RegisterComponent {
     }
   );
 
-  onRegister(username : string, password : string) {this.auth.register(username, password).subscribe({
-    next: () => this.router.navigate(['/login']), 
-    error : () => console.error("Erreur lors de l'inscription")
-  });
-  } 
-
-  onSubmit() {
-    this.router.navigate(['/login'])
-  }
 
   onCancel() {
     this.router.navigate(['/']);
