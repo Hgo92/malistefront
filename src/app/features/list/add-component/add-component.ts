@@ -2,7 +2,7 @@ import { Component, signal, inject } from '@angular/core';
 import { ItemService } from '../services/item';
 import { Router } from '@angular/router';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { form, FormField, FormRoot, required, minLength, min, max } from '@angular/forms/signals';
+import { form, FormField, FormRoot, required, minLength, min, max, validate } from '@angular/forms/signals';
 
 
 @Component({
@@ -26,7 +26,18 @@ export class AddComponent {
   addForm = form(
     this.addModel,
     (schemaPath) => {
-      required(schemaPath.name);    
+      required(schemaPath.name);
+      minLength(schemaPath.name, 2);
+      validate(schemaPath.name, ({value}) => {
+        if (value().trim().length === 0) {
+          return {
+            kind: "whitespace",
+            message: "Le nom de votre article ne doit pas être vide"
+          };
+        }
+        return null;
+      })
+   
       required(schemaPath.quantity);
     },
     {
