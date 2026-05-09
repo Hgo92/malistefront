@@ -3,6 +3,8 @@ import { ItemService } from '../services/item';
 import { Router } from '@angular/router';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { form, FormField, FormRoot, required, minLength, min, max } from '@angular/forms/signals';
+import { firstValueFrom } from 'rxjs';
+
 
 @Component({
   selector: 'app-add-component',
@@ -12,47 +14,48 @@ import { form, FormField, FormRoot, required, minLength, min, max } from '@angul
 })
 export class AddComponent {
   addModel = signal({
-    name: '',
+    name:'',
     quantity: 1,
-  });
+  })
   
   private readonly router = inject(Router);
-  private readonly itemService = inject(ItemService); // Renommé pour plus de clarté
+  private readonly item = inject(ItemService);
   private readonly dialogRef = inject(MatDialogRef<AddComponent>);
 
   addForm = form(
     this.addModel,
     (schemaPath) => {
-      required(schemaPath.name, { message: "Un nom est nécessaire" });
+      required(schemaPath.name, {message : "Un nom est nécessaire"});
       minLength(schemaPath.name, 2);
       required(schemaPath.quantity);
-      min(schemaPath.quantity, 1, { message: "Il faut au moins un article" });
-      max(schemaPath.quantity, 99, { message: "C'est un peu trop d'articles" });
+      min(schemaPath.quantity, 1, {message : "Il faut au moins un article"})
+      max(schemaPath.quantity, 99, {message : "C'est un peu trop d'articles"})
     },
     {
-      submission: {
+      submission : {
         action: async () => {
-          // On récupère les valeurs actuelles des signaux du formulaire
-          const name = this.addForm.name().value();
-          const quantity = this.addForm.quantity().value();
-
-          // Appel au service avec .subscribe() pour déclencher la requête HTTP
-          this.itemService.add(name, quantity).subscribe({
-            next: (response) => {
-              console.log('Succès:', response);
-              this.dialogRef.close(true); // Ferme la modale en cas de succès
-            },
-            error: (err) => {
-              console.error('Erreur lors de l\'ajout:', err);
-              // L'erreur "JSON parse error" du backend sera captée ici si la quantité est nulle
-            }
-          });
-        }
+  console.log('name:', this.addForm.name().value());
+  console.log('quantity:', this.addForm.quantity().value());
+  
+  try {
+    console.log('Avant HTTP call'); // ← ajoute ça
+    await firstValueFrom(
+      this.item.add(this.addForm.name().value(), this.addForm.quantity().value())
+    );
+    console.log('Après HTTP call'); // ← et ça
+    this.dialogRef.close(true);
+    return;
+  } catch (error) {
+    console.error('Erreur:', error); // ← et ça
+    return { kind: 'serverError', message: "L'inscription n'a pas fonctionné" };
+  }
+}
       }
     }
   );
 
+  // Ma méthode pour annuler et revenir à la liste
   cancel() {
-    this.dialogRef.close(); // Plus propre pour une modale que de naviguer directement
+    this.router.navigate(['/list'])
   }
 }
