@@ -34,6 +34,9 @@ export class AddComponent {
     {
       submission : {
         action: async () => {
+          console.log('name:', this.addForm.name().value());
+  console.log('quantity:', this.addForm.quantity().value());
+  console.log('type quantity:', typeof this.addForm.quantity().value());
           
           try {
     const name = this.addForm.name().value();
