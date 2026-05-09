@@ -25,10 +25,12 @@ export class AddComponent {
   private readonly http = inject(HttpClient);
   
   constructor() {
-    this.http.get('https://jsonplaceholder.typicode.com/todos/1')
-.subscribe({
-  next: res => console.log('HTTP OK', res),
-  error: err => console.error('HTTP ERROR', err)
+    this.http.post(
+  'https://malisteback.zapto.org/api/items/add',
+  { name: 'test', quantity: 1 }
+).subscribe({
+  next: res => console.log(res),
+  error: err => console.error(err)
 });
   }
 
