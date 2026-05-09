@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { form, FormField, FormRoot, required, minLength, min, max } from '@angular/forms/signals';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-add-component',
@@ -36,7 +37,9 @@ export class AddComponent {
         action: async () => {
           
           try {
-            this.item.add(this.addForm.name().value(), this.addForm.quantity().value());
+            await firstValueFrom(
+              this.item.add(this.addForm.name().value(), this.addForm.quantity().value())
+            );
             this.dialogRef.close(true)
             return;
           } catch (error) {
