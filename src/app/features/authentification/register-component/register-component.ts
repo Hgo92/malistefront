@@ -35,10 +35,9 @@ export class RegisterComponent {
     {
       submission : {
         action: async (field) => {
-          const { username, password } = this.registerModel()
           
           try {
-            await firstValueFrom(this.auth.register(username, password));
+            this.auth.register(this.registerForm.username().value(), this.registerForm.password().value());
             await this.router.navigate(['/login']);
             return;
           } catch (error) {
