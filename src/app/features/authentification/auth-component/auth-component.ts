@@ -1,29 +1,45 @@
-import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from '../services/auth';
+import { FormField, FormRoot, form, required } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-auth-component',
-  imports: [FormsModule],
+  imports: [FormField, FormRoot],
+  standalone: true,
   templateUrl: './auth-component.html',
   styleUrl: './auth-component.scss',
 })
 export class AuthComponent {
-  username = '';
-  password = '';
+  loginModel = signal ({
+    username: '',
+    password: '',
+  })
 
   private readonly auth = inject(Auth);
   private readonly router = inject(Router);
 
-  constructor() {}
-
-  onLogin() {
-    this.auth.login(this.username, this.password).subscribe({
-      next: () => this.router.navigate(['/list']),
-      error : () => console.error('Identifiants incorrects')
-    });
-  }
+  loginForm = form(
+    this.loginModel,
+    (schemaPath) => {
+      required (schemaPath.username);
+      required (schemaPath.password);
+    }, 
+    {
+      submission : {
+        action : async() => {
+          try {
+            this.auth.login(this.loginForm.username().value(), this.loginForm.password().value());
+            await this.router.navigate(['/list'])
+            return
+          }
+          catch (error) {
+            return {kind : 'serverError', message: "La connexion n'a pas fonctionné"}
+          }
+        }
+      }
+    }
+  );
 
   onCancel() {
     this.router.navigate(['/']);

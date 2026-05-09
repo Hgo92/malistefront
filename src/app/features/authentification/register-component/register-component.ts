@@ -2,7 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from '../services/auth';
 import { form, FormField, FormRoot, minLength, required } from '@angular/forms/signals';
-import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-register-component',
@@ -34,7 +33,7 @@ export class RegisterComponent {
     },
     {
       submission : {
-        action: async (field) => {
+        action: async () => {
           
           try {
             this.auth.register(this.registerForm.username().value(), this.registerForm.password().value());
