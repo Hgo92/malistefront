@@ -37,19 +37,9 @@ export class AddComponent {
           
           try {
     const name = this.addForm.name().value();
-    const quantity = this.addForm.quantity().value();
+    const quantity = Number(this.addForm.quantity().value());
 
-    this.item.add(name, quantity).subscribe({
-      next: (response) => {
-              console.log('Succès:', response);
-              this.dialogRef.close(true); // Ferme la modale en cas de succès
-            },
-            error: (err) => {
-              console.error('Erreur lors de l\'ajout:', err);
-              // L'erreur "JSON parse error" du backend sera captée ici si la quantité est nulle
-            }
-    });
-    
+    this.item.add(name, quantity);
     this.dialogRef.close(true);
     return;
   } catch (error) {
