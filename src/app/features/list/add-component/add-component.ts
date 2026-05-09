@@ -30,17 +30,19 @@ export class AddComponent {
     },
     {
       submission : {
-  action: async () => {
-    console.log('name:', this.addForm.name().value());
-    console.log('quantity:', this.addForm.quantity().value());
-    console.log('Avant HTTP call'); 
-      
-    this.item.add(this.addForm.name().value(), this.addForm.quantity().value())
-      
-    console.log('Après HTTP call'); 
-    this.dialogRef.close(true);
-    return;
-}
+        action: async () => {
+          console.log('name:', this.addForm.name().value());
+          console.log('quantity:', this.addForm.quantity().value());
+          console.log(this.addForm.name().errors());
+          console.log(this.addForm.quantity().errors());
+          console.log('Avant HTTP call'); 
+            
+          this.item.add(this.addForm.name().value(), this.addForm.quantity().value())
+            
+          console.log('Après HTTP call'); 
+          this.dialogRef.close(true);
+          return;
+      }
       }
     }
   );
