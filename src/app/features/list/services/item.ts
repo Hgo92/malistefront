@@ -13,7 +13,7 @@ export class ItemService {
     return this.http.get<any[]>(`${this.apiUrl}/me`);
   }
 
-  add(name: string) {
+  add(name: string, quantity: number) {
     return this.http.post(`${this.apiUrl}/add`, { name });
   }
 
