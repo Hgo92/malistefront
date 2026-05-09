@@ -39,8 +39,16 @@ export class AddComponent {
     const name = this.addForm.name().value();
     const quantity = this.addForm.quantity().value();
 
-    // On utilise firstValueFrom pour déclencher la requête HTTP
-    await firstValueFrom(this.item.add(name, quantity));
+    this.item.add(name, quantity).subscribe({
+      next: (response) => {
+              console.log('Succès:', response);
+              this.dialogRef.close(true); // Ferme la modale en cas de succès
+            },
+            error: (err) => {
+              console.error('Erreur lors de l\'ajout:', err);
+              // L'erreur "JSON parse error" du backend sera captée ici si la quantité est nulle
+            }
+    });
     
     this.dialogRef.close(true);
     return;
