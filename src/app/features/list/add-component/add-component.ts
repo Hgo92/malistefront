@@ -33,14 +33,10 @@ export class AddComponent {
     },
     {
       submission : {
-        action: async () => {
-          console.log('name:', this.addForm.name().value());
-  console.log('quantity:', this.addForm.quantity().value());
-  console.log('type quantity:', typeof this.addForm.quantity().value());
-          
+        action: async () => {          
           try {
     const name = this.addForm.name().value();
-    const quantity = Number(this.addForm.quantity().value());
+    const quantity = this.addForm.quantity().value();
 
     this.item.add(name, quantity);
     this.dialogRef.close(true);
