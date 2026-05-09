@@ -35,7 +35,8 @@ export class AddComponent {
         action: async () => {
           
           try {
-              this.item.add(this.addForm.name().value(), this.addForm.quantity().value())
+            console.log(this.addForm.quantity().value());
+              this.item.add(this.addForm.name().value(), this.addForm.quantity().value() ?? 1)
             
             this.dialogRef.close(true)
             return;
