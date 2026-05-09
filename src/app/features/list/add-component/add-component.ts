@@ -31,21 +31,15 @@ export class AddComponent {
     {
       submission : {
   action: async () => {
-  console.log('name:', this.addForm.name().value());
-  console.log('quantity:', this.addForm.quantity().value());
-  
-  try {
-    console.log('Avant HTTP call'); // ← ajoute ça
-    await firstValueFrom(
-      this.item.add(this.addForm.name().value(), this.addForm.quantity().value())
-    );
-    console.log('Après HTTP call'); // ← et ça
+    console.log('name:', this.addForm.name().value());
+    console.log('quantity:', this.addForm.quantity().value());
+    console.log('Avant HTTP call'); 
+      
+    this.item.add(this.addForm.name().value(), this.addForm.quantity().value())
+      
+    console.log('Après HTTP call'); 
     this.dialogRef.close(true);
     return;
-  } catch (error) {
-    console.error('Erreur:', error); // ← et ça
-    return { kind: 'serverError', message: "L'inscription n'a pas fonctionné" };
-  }
 }
       }
     }
