@@ -45,18 +45,15 @@ export class AddComponent {
         action: async () => {
           const formValue = this.addModel();
 
-console.log(formValue);
-
-this.item.add(
-  formValue.name,
-  formValue.quantity
-).subscribe({
-  next: res => {
-    console.log(res);
-    this.dialogRef.close(true);
-  },
-  error: err => console.error(err)
-});
+          this.item.add(
+            formValue.name,
+            formValue.quantity
+          ).subscribe({
+            next: () => {
+              this.dialogRef.close(true);
+            },
+            error: err => console.error(err)
+          });
       }
       }
     }

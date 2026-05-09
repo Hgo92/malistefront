@@ -34,14 +34,18 @@ export class RegisterComponent {
     {
       submission : {
         action: async () => {
-          
-          try {
-            this.auth.register(this.registerForm.username().value(), this.registerForm.password().value());
-            await this.router.navigate(['/login']);
-            return;
-          } catch (error) {
-            return { kind : 'serverError', message: "L'inscription n'a pas fonctionné"}
-          }
+
+          const formValue = this.registerModel();
+
+          this.auth.register(
+            formValue.username,
+            formValue.password
+          ).subscribe({
+            next: () => {
+               this.router.navigate(['/login']);
+            },
+            error: err => console.error(err)
+          });
         }
       }
     }

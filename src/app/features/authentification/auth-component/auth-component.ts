@@ -28,14 +28,17 @@ export class AuthComponent {
     {
       submission : {
         action : async() => {
-          try {
-            this.auth.login(this.loginForm.username().value(), this.loginForm.password().value());
-            await this.router.navigate(['/list'])
-            return
-          }
-          catch (error) {
-            return {kind : 'serverError', message: "La connexion n'a pas fonctionné"}
-          }
+          const formValue = this.loginModel();
+
+          this.auth.login(
+            formValue.username,
+            formValue.password
+          ).subscribe({
+            next: () => {
+              this.router.navigate(['/list'])
+            },
+            error: err => console.error(err)
+          });
         }
       }
     }
