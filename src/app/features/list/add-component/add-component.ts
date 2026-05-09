@@ -3,6 +3,7 @@ import { ItemService } from '../services/item';
 import { Router } from '@angular/router';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { form, FormField, FormRoot, required, minLength, min, max } from '@angular/forms/signals';
+import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
 
@@ -21,6 +22,15 @@ export class AddComponent {
   private readonly router = inject(Router);
   private readonly item = inject(ItemService);
   private readonly dialogRef = inject(MatDialogRef<AddComponent>);
+  private readonly http = inject(HttpClient);
+  
+  constructor() {
+    this.http.get('https://jsonplaceholder.typicode.com/todos/1')
+.subscribe({
+  next: res => console.log('HTTP OK', res),
+  error: err => console.error('HTTP ERROR', err)
+});
+  }
 
   addForm = form(
     this.addModel,
