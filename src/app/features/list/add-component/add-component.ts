@@ -3,8 +3,6 @@ import { ItemService } from '../services/item';
 import { Router } from '@angular/router';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { form, FormField, FormRoot, required, minLength, min, max } from '@angular/forms/signals';
-import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -22,17 +20,8 @@ export class AddComponent {
   private readonly router = inject(Router);
   private readonly item = inject(ItemService);
   private readonly dialogRef = inject(MatDialogRef<AddComponent>);
-  private readonly http = inject(HttpClient);
   
-  constructor() {
-    this.http.post(
-  'https://malisteback.zapto.org/api/items/add',
-  { name: 'test', quantity: 1 }
-).subscribe({
-  next: res => console.log(res),
-  error: err => console.error(err)
-});
-  }
+  constructor() {}
 
   addForm = form(
     this.addModel,
