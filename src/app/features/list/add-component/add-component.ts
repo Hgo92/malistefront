@@ -3,6 +3,7 @@ import { ItemService } from '../services/item';
 import { Router } from '@angular/router';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { form, FormField, FormRoot, required, minLength, min, max } from '@angular/forms/signals';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -35,12 +36,15 @@ export class AddComponent {
         action: async () => {
           
           try {
-            console.log(this.addForm.quantity().value());
-              this.item.add(this.addForm.name().value(), this.addForm.quantity().value())
-            
-            this.dialogRef.close(true)
-            return;
-          } catch (error) {
+    const name = this.addForm.name().value();
+    const quantity = this.addForm.quantity().value();
+
+    // On utilise firstValueFrom pour déclencher la requête HTTP
+    await firstValueFrom(this.item.add(name, quantity));
+    
+    this.dialogRef.close(true);
+    return;
+  } catch (error) {
             return { kind : 'serverError', message: "L'inscription n'a pas fonctionné"}
           }
         }
