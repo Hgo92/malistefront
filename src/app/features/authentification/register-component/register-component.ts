@@ -47,7 +47,6 @@ export class RegisterComponent {
     }
   );
 
-
   onCancel() {
     this.router.navigate(['/']);
   }
