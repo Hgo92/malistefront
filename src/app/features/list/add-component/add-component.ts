@@ -28,8 +28,8 @@ export class AddComponent {
       required(schemaPath.name, {message : "Un nom est nécessaire"});
       minLength(schemaPath.name, 2);
       required(schemaPath.quantity);
-      min(schemaPath.quantity, 1, {message : "Il faut au moins un article"})
-      max(schemaPath.quantity, 99, {message : "C'est un peu trop d'articles"})
+      min(schemaPath.quantity, 1, {message : "Il faut au moins un article"});
+      max(schemaPath.quantity, 99, {message : "C'est un peu trop d'articles"});
     },
     {
       submission : {
