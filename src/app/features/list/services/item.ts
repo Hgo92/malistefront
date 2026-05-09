@@ -14,7 +14,7 @@ export class ItemService {
   }
 
   add(name: string, quantity: number) {
-    return this.http.post(`${this.apiUrl}/add`, { name : name, quantity : quantity });
+    return this.http.post(`${this.apiUrl}/add`, { name, quantity});
   }
 
   delete(id: number) {

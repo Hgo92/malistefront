@@ -36,7 +36,7 @@ export class AddComponent {
           
           try {
             console.log(this.addForm.quantity().value());
-              this.item.add(this.addForm.name().value(), this.addForm.quantity().value() ?? 1)
+              this.item.add(this.addForm.name().value(), this.addForm.quantity().value())
             
             this.dialogRef.close(true)
             return;
