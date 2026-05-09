@@ -37,7 +37,21 @@ export class AddComponent {
           console.log(this.addForm.quantity().errors());
           console.log('Avant HTTP call'); 
             
-          this.item.add(this.addForm.name().value(), this.addForm.quantity().value())
+          this.item.add(
+  this.addForm.name().value(),
+  this.addForm.quantity().value()
+).subscribe({
+  next: (res) => {
+    console.log('SUCCESS', res);
+    this.dialogRef.close(true);
+  },
+  error: (err) => {
+    console.error('ERROR', err);
+  },
+  complete: () => {
+    console.log('COMPLETE');
+  }
+});
             
           console.log('Après HTTP call'); 
           this.dialogRef.close(true);
