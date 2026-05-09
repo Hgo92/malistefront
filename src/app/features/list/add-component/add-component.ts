@@ -25,15 +25,12 @@ export class AddComponent {
   addForm = form(
     this.addModel,
     (schemaPath) => {
-      required(schemaPath.name, {message : "Un nom est nécessaire"});
-      minLength(schemaPath.name, 2);
+      required(schemaPath.name);    
       required(schemaPath.quantity);
-      min(schemaPath.quantity, 1, {message : "Il faut au moins un article"});
-      max(schemaPath.quantity, 99, {message : "C'est un peu trop d'articles"});
     },
     {
       submission : {
-        action: async () => {
+  action: async () => {
   console.log('name:', this.addForm.name().value());
   console.log('quantity:', this.addForm.quantity().value());
   
