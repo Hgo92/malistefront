@@ -39,6 +39,8 @@ export class AddComponent {
       })
    
       required(schemaPath.quantity);
+      min(schemaPath.quantity, 1);
+      max(schemaPath.quantity, 99);
     },
     {
       submission : {

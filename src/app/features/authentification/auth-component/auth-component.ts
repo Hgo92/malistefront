@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from '../services/auth';
-import { FormField, FormRoot, form, required } from '@angular/forms/signals';
+import { FormField, FormRoot, form, maxLength, minLength, required, validate } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-auth-component',
@@ -22,8 +22,8 @@ export class AuthComponent {
   loginForm = form(
     this.loginModel,
     (schemaPath) => {
-      required (schemaPath.username);
-      required (schemaPath.password);
+      required (schemaPath.username, {message : "Un nom est nécessaire"});
+      required (schemaPath.password, {message : "Un mot de passe est nécessaire"});
     }, 
     {
       submission : {
