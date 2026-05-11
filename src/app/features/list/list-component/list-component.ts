@@ -7,7 +7,7 @@ import { Auth } from '../../authentification/services/auth';
 import { Observable, Subject } from 'rxjs';
 import { map, switchMap, startWith, shareReplay } from 'rxjs/operators';
 import { HeaderComponent } from '../../header-component/header-component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddComponent } from '../add-component/add-component';
 
 
@@ -68,11 +68,10 @@ export class ListComponent implements OnInit{
 
   // Mon Dialog/modale pour ajouter un item
   toAddComponent() {
-      const dialogRef = this.dialog.open(AddComponent, {
-        height: '375px',
-        width: '300px'
-      });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.maxWidth = '20%';
+    const dialogRef = this.dialog.open(AddComponent, dialogConfig);
 
-      dialogRef.afterClosed().subscribe(() => this.loadItems())
+    dialogRef.afterClosed().subscribe(() => this.loadItems())
   }
 }
