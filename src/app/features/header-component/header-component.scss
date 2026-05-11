@@ -32,11 +32,6 @@
   .logout-button {
     width: auto; 
     margin: 0 20px 0 0;   
-    
-    .front {
-      padding: 8px 15px; // Un padding plus compact pour le header
-      font-size: 0.85rem;
-      background: vars.$warn; // On utilise la couleur d'alerte pour la déconnexion
-    }
+    background-color: #FC5736;
   }
 }
