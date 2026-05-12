@@ -1,37 +1,36 @@
-<app-header-component/>
+<app-header-component />
 <h2>La liste de : {{ username }}</h2>
 
 <div class="button-container">
-    <button class="btn-add" (click)="toAddComponent()">Ajouter un article</button>
+  <button class="btn-add" (click)="toAddComponent()">Ajouter un article</button>
 </div>
 
 <!-- La liste avec les articles actifs -->
-<div *ngIf="(activeItems$ | async) as activeItems">
-  <div class="items-grid" *ngIf="activeItems.length > 0; else emptyList">
-    <app-item-component
-      *ngFor="let item of activeItems"
-      [item]="item"
-      (itemDetached)="onDetach($event)"
-      (quantityChanged)="loadItems()" />
-  </div>
-</div>
-
-<!-- Le message si la liste est vide -->
-<ng-template #emptyList>
+@let activeItems = activeItems$ | async;
+@if (activeItems?.length) {
+  <ul class="items-grid">
+    @for (item of activeItems; track item.id) {
+      <app-item-component
+        [item]="item"
+        (itemDetached)="onDetach($event)"
+        (quantityChanged)="loadItems()"
+      />
+    }
+  </ul>
+} @else {
   <p>Ta liste est vide !</p>
-</ng-template>
+}
 
 <!-- La liste avec les articles archivés -->
-<div *ngIf="(archivedItems$ | async) as archivedItems">
-  <div *ngIf="archivedItems.length > 0">
-    <h3>Vos anciens achats</h3>
-    <div class="items-grid">
-      <app-item-component
-        *ngFor="let item of archivedItems"
-        [item]="item"
-        (itemAttached)="onAttach($event)"
-        (itemDeleted)="onDelete($event)" 
-        (quantityChanged)="loadItems()"/>
-    </div>
-  </div>
-</div>
+@let archivedItems = archivedItems$ | async;
+@if (archivedItems?.length) {
+  <h3>Vos anciens achats</h3>
+  @for (item of archivedItems; track item.id) {
+    <app-item-component
+      [item]="item"
+      (itemAttached)="onAttach($event)"
+      (itemDeleted)="onDelete($event)"
+      (quantityChanged)="loadItems()"
+    />
+  }
+}

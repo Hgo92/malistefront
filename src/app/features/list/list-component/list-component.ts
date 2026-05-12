@@ -1,47 +1,40 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
-import { ItemComponent } from '../item-component/item-component';
-import { ItemService } from '../services/item';
-import { Item } from '../models/item';
-import { Auth } from '../../authentification/services/auth';
 import { Observable, Subject } from 'rxjs';
-import { map, switchMap, startWith, shareReplay } from 'rxjs/operators';
-import { HeaderComponent } from '../../header-component/header-component';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AddComponent } from '../add-component/add-component';
+import { map, shareReplay, startWith, switchMap } from 'rxjs/operators';
 
+import { Component, inject, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Auth } from '@authentication/services/auth';
+
+import { HeaderComponent } from '../../header-component/header-component';
+import { AddComponent } from '../add-component/add-component';
+import { ItemComponent } from '../item-component/item-component';
+import { Item } from '../models/item';
+import { ItemService } from '../services/item';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-list-component',
-  imports: [CommonModule, ItemComponent, HeaderComponent],
+  imports: [ItemComponent, HeaderComponent, AsyncPipe],
   templateUrl: './list-component.html',
   styleUrl: './list-component.scss',
 })
-
-export class ListComponent implements OnInit{
+export class ListComponent implements OnInit {
   username = '';
 
   private refresh$ = new Subject<void>();
-
-  items$: Observable<Item[]> = this.refresh$.pipe(
-    startWith(null),
-    switchMap(() => this.itemService.getMyItems()),
-    shareReplay(1)
-  );
-
-  activeItems$ = this.items$.pipe(
-    map(items => items.filter(item => !item.isArchived))
-  );
-
-  archivedItems$ = this.items$.pipe(
-    map(items => items.filter(item => item.isArchived))
-  );
-
   private readonly auth = inject(Auth);
   private readonly itemService = inject(ItemService);
   private readonly dialog = inject(MatDialog);
 
-  constructor() {}
+  items$: Observable<Item[]> = this.refresh$.pipe(
+    startWith(null),
+    switchMap(() => this.itemService.getMyItems()),
+    shareReplay(1),
+  );
+
+  activeItems$ = this.items$.pipe(map((items) => items.filter((item) => !item.isArchived)));
+
+  archivedItems$ = this.items$.pipe(map((items) => items.filter((item) => item.isArchived)));
 
   // Au lancement, je récupère l'username pour pouvoir l'afficher
   ngOnInit() {
@@ -54,11 +47,11 @@ export class ListComponent implements OnInit{
   }
 
   // Mes méthodes pour détacher un item d'une liste, l'attacher et le supprimer
-  onDetach(id : number) {
+  onDetach(id: number) {
     this.itemService.detach(id).subscribe(() => this.loadItems());
   }
 
-  onAttach(id : number) {
+  onAttach(id: number) {
     this.itemService.attach(id).subscribe(() => this.loadItems());
   }
 
@@ -70,6 +63,6 @@ export class ListComponent implements OnInit{
   toAddComponent() {
     const dialogRef = this.dialog.open(AddComponent);
 
-    dialogRef.afterClosed().subscribe(() => this.loadItems())
+    dialogRef.afterClosed().subscribe(() => this.loadItems());
   }
 }
