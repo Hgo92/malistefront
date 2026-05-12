@@ -1,38 +1,12 @@
 @use '../../../../styles/variables' as vars;
 
-.add-container {
-  padding: 10px;
-  
-
-  .field-group {
-    margin-bottom: 20px;
-    
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 5px;
-      color: vars.$text-light;
-      font-size: 0.9rem;
-    }
-  }
-
-  .actions {
-    display: flex;
-    gap: 15px;
-    margin-top: 30px;
-    
-    button {
-      flex: 1;
-    }
-  }
-}
 
 mat-dialog-content {
   padding-top: 0 !important;
-  margin-top: 0 !important;
+  margin-top: 15px !important;
 }
 
-mat-dialog-actions {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
+.disabled {
+  
 }
+

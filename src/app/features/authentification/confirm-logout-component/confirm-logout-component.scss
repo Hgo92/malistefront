@@ -4,9 +4,24 @@ button {
   max-width : 50%;
 }
 
-.buttonDiv {
+mat-dialog-actions {
   display : flex;
   flex-direction : column;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
+  margin-top : 0 !important;
+  padding : 0 20px 0 20px !important;
+}
+
+.logoutMessage {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      font-size:larger;
+    }
 }

@@ -3,40 +3,40 @@
   width: 100%;
   margin: 10px auto;
   padding: 0 10px;
-}
 
-h2 { 
-  padding-bottom: 5px; 
-}
+  h2 {
+    padding-bottom: 5px;
+  }
 
-h3 {
-  margin-top: 15px;
-  color: #7f8c8d;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-}
+  h3 {
+    margin-top: 15px;
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
 
-.button-container {
-  display: flex;
-  justify-content: center; 
-  align-items: center;     
-  width: 100%;    
-}
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 
-.btn-add {
-  width: auto !important;
-  background-color: #2ecc71;
-  color: white;
-  padding: 10px;
-  font-size: 1rem;
-  margin : 0;
-  border-radius: 25px;
-}
+  .btn-add {
+    width: auto;
+    background-color: #2ecc71;
+    color: white;
+    padding: 12px;
+    font-size: 0.9rem;
+    margin: 0;
+    border-radius: 25px;
+  }
 
-.items-grid {
-  display: flex;
-  flex-wrap: wrap; 
-  gap: 10px;       
-  padding: 10px 0;
-  justify-content: flex-start; 
+  .items-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 0;
+    justify-content: flex-start;
+  }
 }

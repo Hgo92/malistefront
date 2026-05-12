@@ -55,45 +55,28 @@ input {
 // --- Boutons (Le style 3D amélioré) ---
 button {
   appearance: none;
-  background: transparent;
   border: none;
   cursor: pointer;
-  isolation: isolate;
   position: relative;
-  width: 100%; // Par défaut pleine largeur pour le mobile
+  width: 100%; 
   margin: 10px 0;
+  background: $primary;
+  color: white;
+  display: block;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: $primary;
+  color: white;
+  font-weight: 600;
+  transform: translateY(-4px);
+  transition: transform 200ms cubic-bezier(.3, .7, .4, 1);
 
-  .front {
-    display: block;
-    padding: 12px 20px;
-    border-radius: 8px;
-    background: $primary;
-    color: white;
-    font-weight: 600;
-    transform: translateY(-4px);
-    transition: transform 200ms cubic-bezier(.3, .7, .4, 1);
-  }
-
-  .shadow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    transform: translateY(2px);
-  }
-
-  &:hover .front { transform: translateY(-6px); }
-  &:active .front { transform: translateY(-2px); }
+  &:hover  { transform: translateY(-6px); }
+  &:active  { transform: translateY(-2px); }
 }
 
-// Bouton secondaire (Bleu)
-.btn-secondary .front { background: $accent; }
-
 // Bouton Alerte (Rouge)
-.btn-warn .front { background: $warn; }
+.btn-warn { background: #FC5736; }
 
 // --- États de la liste ---
 .empty-state {
@@ -135,11 +118,4 @@ button {
 
 .mat-mdc-dialog-content {
   overflow: hidden !important;
-}
-
-.mat-mdc-dialog-actions {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }

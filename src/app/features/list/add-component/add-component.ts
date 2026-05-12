@@ -63,6 +63,6 @@ export class AddComponent {
 
   // Ma méthode pour annuler et revenir à la liste
   cancel() {
-    this.router.navigate(['/list'])
+    this.dialogRef.close(true);
   }
 }

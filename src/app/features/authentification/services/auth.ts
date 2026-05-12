@@ -2,13 +2,14 @@ import { inject, Injectable } from '@angular/core';
 import { tap } from 'rxjs/internal/operators/tap';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { API_URL } from '../../../token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Auth {
-  private apiUrl= 'https://malisteback.zapto.org';
-
+  
+  private readonly url = inject(API_URL);
   private readonly http = inject(HttpClient);
   private readonly router = inject(Router);
 
@@ -16,13 +17,13 @@ export class Auth {
 
   // Méthode pour enregistrer un nouvel utilisateur
   register(username: string, password: string) {
-  return this.http.post<{token: string}>(`${this.apiUrl}/api/users/register`, { username, password })
+  return this.http.post<{token: string}>(`${this.url}/api/users/register`, { username, password })
   .pipe(tap(res => localStorage.setItem('token', res.token)));
 }
 
   // Méthode pour se connecter
   login(username: string, password: string) {
-  return this.http.post<{token: string}>(`${this.apiUrl}/auth/login`, { username, password })
+  return this.http.post<{token: string}>(`${this.url}/auth/login`, { username, password })
     .pipe(tap(res => localStorage.setItem('token', res.token)));
 }
 
@@ -60,7 +61,7 @@ export class Auth {
   // Méthode pour se déconnecter
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   // Méthode pour récupérer le nom d'utilisateur (à partir du token)
