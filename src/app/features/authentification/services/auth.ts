@@ -60,7 +60,7 @@ export class Auth {
   // Méthode pour se déconnecter
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   // Méthode pour récupérer le nom d'utilisateur (à partir du token)

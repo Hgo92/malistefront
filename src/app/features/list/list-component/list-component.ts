@@ -68,9 +68,7 @@ export class ListComponent implements OnInit{
 
   // Mon Dialog/modale pour ajouter un item
   toAddComponent() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.maxWidth = '20%';
-    const dialogRef = this.dialog.open(AddComponent, dialogConfig);
+    const dialogRef = this.dialog.open(AddComponent);
 
     dialogRef.afterClosed().subscribe(() => this.loadItems())
   }

@@ -29,4 +29,5 @@ export class HomeComponent {
       error : () => console.error('Identifiants incorrects')
     });
   }
+
 }
