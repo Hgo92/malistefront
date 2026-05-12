@@ -1,91 +1,94 @@
 @use '../../../../styles/variables' as vars;
 
 :host {
-  display: inline-block; 
-}
+  display: inline-block;
 
-.item-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 14px;
-  background: white;
-  border-radius: 25px; 
-  border: 1px solid #edf2f7;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease;
-  white-space: nowrap; 
-  min-height: 48px;     
-  box-sizing: border-box; 
+  .item-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 14px;
+    background: white;
+    border-radius: 25px;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    min-height: 48px;
+    box-sizing: border-box;
 
-  &:hover {
-    border-color: vars.$primary;
-    background: #f0fff4;
-    transform: translateY(-1px);
+    &:hover {
+      border-color: vars.$primary;
+      background: #f0fff4;
+      transform: translateY(-1px);
+    }
+
+    &.archived {
+      background: #f8fafc;
+      opacity: 0.7;
+      border-style: dashed;
+    }
   }
 
-  &.archived {
-    background: #f8fafc;
-    opacity: 0.7;
-    border-style: dashed;
-  }
-}
-
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  background: #f1f5f9;
-  padding: 2px 8px;
-  border-radius: 15px;
-
-  button {
+  .quantity-controls {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
-    margin: 0;               
-    padding: 0;              
+    gap: 6px;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 15px;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      padding: 0;
+      transform: none;
+      line-height: 1;
+
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      color: vars.$primary;
+
+      &:hover {
+        color: vars.$primary-dark;
+        transform: none;
+      }
+      &:active {
+        transform: none;
+      }
+    }
+
+    .quantity-value {
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+  }
+
+  .delete-btn {
+    height: 26px;
+    width: 26px;
+    min-width: 26px;
+    padding: 0;
+    margin: 0;
     transform: none;
-    line-height: 1;
-    
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    color: vars.$primary;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: #fc5736;
 
     &:hover {
-      color: vars.$primary-dark;
-      transform: none;       
+      transform: none;
     }
     &:active {
-      transform: none;       
+      transform: none;
     }
   }
-
-  .quantity-value {
-    font-size: 0.85rem;
-    font-weight: 700;
-  }
-}
-
-.delete-btn {
-  height: 26px !important;
-  width: 26px !important;
-  min-width: 26px;
-  padding: 0 !important;
-  margin: 0 !important;        
-  transform: none !important;  
-  display: flex !important;    
-  flex-shrink: 0;
-   align-items: center;     
-  justify-content: center;
-  background-color: #FC5736;
-
-
-  &:hover  { transform: none !important; }
-  &:active { transform: none !important; }
 }
