@@ -8,7 +8,6 @@ import { API_URL } from '../../../token';
   providedIn: 'root',
 })
 export class Auth {
-  
   private readonly url = inject(API_URL);
   private readonly http = inject(HttpClient);
   private readonly router = inject(Router);
@@ -17,39 +16,41 @@ export class Auth {
 
   // Méthode pour enregistrer un nouvel utilisateur
   register(username: string, password: string) {
-  return this.http.post<{token: string}>(`${this.url}/api/users/register`, { username, password })
-  .pipe(tap(res => localStorage.setItem('token', res.token)));
-}
+    return this.http
+      .post<{ token: string }>(`${this.url}/api/users/register`, { username, password })
+      .pipe(tap((res) => localStorage.setItem('token', res.token)));
+  }
 
   // Méthode pour se connecter
   login(username: string, password: string) {
-  return this.http.post<{token: string}>(`${this.url}/auth/login`, { username, password })
-    .pipe(tap(res => localStorage.setItem('token', res.token)));
-}
+    return this.http
+      .post<{ token: string }>(`${this.url}/auth/login`, { username, password })
+      .pipe(tap((res) => localStorage.setItem('token', res.token)));
+  }
 
   // Méthode pour checker dans le local storage si l'utilisateur est connecté (et si le token n'est pas expiré)
   getToken() {
     const token = localStorage.getItem('token');
-    if (!token) return null 
+    if (!token) return null;
 
     if (this.isTokenExpired(token)) {
       this.logout();
-      return null
+      return null;
     }
-    return token
+    return token;
   }
 
   // Méthode pour checker si le token est expiré
-  isTokenExpired(token?: string) : boolean {
+  isTokenExpired(token?: string): boolean {
     const t = token ?? localStorage.getItem('token');
-    if (!t) return true
+    if (!t) return true;
 
     try {
-      const {exp} = JSON.parse(atob(t.split('.')[1]));
+      const { exp } = JSON.parse(atob(t.split('.')[1]));
       if (!exp) return false;
       return Date.now() >= exp * 1000;
     } catch {
-      return true
+      return true;
     }
   }
 
@@ -66,13 +67,15 @@ export class Auth {
 
   // Méthode pour récupérer le nom d'utilisateur (à partir du token)
   getUsername(): string | null {
-  const token = this.getToken();
-  if (!token) return null;
-  try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      return payload.sub ?? null;
+    const token = this.getToken();
+    if (!token) return null;
+    try {
+      const binary = atob(token.split('.')[1]);
+      const bytes = Uint8Array.from(binary, (ch) => ch.charCodeAt(0));
+      const payload = new TextDecoder().decode(bytes);
+      return JSON.parse(payload).sub ?? null;
     } catch {
-      return null; 
+      return null;
     }
-}
+  }
 }

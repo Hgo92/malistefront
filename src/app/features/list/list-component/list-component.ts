@@ -1,14 +1,10 @@
-import { Observable, Subject } from 'rxjs';
-import { map, shareReplay, startWith, switchMap } from 'rxjs/operators';
-
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Auth } from '@authentication/services/auth';
 
 import { HeaderComponent } from '../../header-component/header-component';
 import { AddComponent } from '../add-component/add-component';
 import { ItemComponent } from '../item-component/item-component';
-import { Item } from '../models/item';
 import { ItemService } from '../services/item';
 import { AsyncPipe } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -16,58 +12,41 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-list-component',
   imports: [ItemComponent, HeaderComponent, AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './list-component.html',
   styleUrl: './list-component.scss',
 })
-export class ListComponent implements OnInit {
-  username = '';
-
-  private refresh$ = new Subject<void>();
+export class ListComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly auth = inject(Auth);
   private readonly itemService = inject(ItemService);
   private readonly dialog = inject(MatDialog);
 
-  items$: Observable<Item[]> = this.refresh$.pipe(
-    startWith(null),
-    switchMap(() => this.itemService.getMyItems()),
-    shareReplay({ bufferSize: 1, refCount: true }),
-  );
-
-  activeItems$ = this.items$.pipe(
-    map((items) => items.filter((item) => !item.isArchived).sort((a, b) => a.id - b.id)),
-  );
-
-  archivedItems$ = this.items$.pipe(
-    map((items) => items.filter((item) => item.isArchived).sort((a, b) => a.id - b.id)),
-  );
-
-  // Au lancement, je récupère l'username pour pouvoir l'afficher
-  ngOnInit() {
-    this.username = this.auth.getUsername() ?? '';
-  }
+  protected username = signal(this.auth.getUsername() ?? '');
+  protected activeItems$ = this.itemService.activeItems$;
+  protected archivedItems$ = this.itemService.archivedItems$;
 
   // Méthode pour recharger mes items si besoin
-  loadItems() {
-    this.refresh$.next();
+  protected loadItems() {
+    this.itemService.refresh();
   }
 
   // Mes méthodes pour détacher un item d'une liste, l'attacher et le supprimer
-  onDetach(id: number) {
+  protected onDetach(id: number) {
     this.itemService
       .detach(id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.loadItems());
   }
 
-  onAttach(id: number) {
+  protected onAttach(id: number) {
     this.itemService
       .attach(id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.loadItems());
   }
 
-  onDelete(id: number) {
+  protected onDelete(id: number) {
     this.itemService
       .delete(id)
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -75,7 +54,7 @@ export class ListComponent implements OnInit {
   }
 
   // Mon Dialog/modale pour ajouter un item
-  toAddComponent() {
+  protected toAddComponent() {
     const dialogRef = this.dialog.open(AddComponent);
 
     dialogRef
