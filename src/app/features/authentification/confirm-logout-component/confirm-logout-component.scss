@@ -1,20 +1,21 @@
 @use '../../../../styles/variables' as vars;
 
-button {
-  max-width : 50%;
-}
+:host {
+  button {
+    max-width: 50%;
+  }
 
-mat-dialog-actions {
-  display : flex;
-  flex-direction : column;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
-  margin-top : 0 !important;
-  padding : 0 20px 0 20px !important;
-}
+  mat-dialog-actions {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    padding: 0 20px 0 20px;
+  }
 
-.logoutMessage {
+  .logoutMessage {
     width: auto;
     height: auto;
     display: flex;
@@ -22,6 +23,7 @@ mat-dialog-actions {
     justify-content: center;
 
     p {
-      font-size:larger;
+      font-size: larger;
     }
+  }
 }

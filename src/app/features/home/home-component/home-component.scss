@@ -1,9 +1,10 @@
 @use '../../../../styles/variables' as vars;
 
+:host {
   h1 {
     font-size: 2rem;
-    margin-top: 10px !important;
-    margin-bottom: 10px !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background: linear-gradient(to right, vars.$primary, vars.$accent);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -23,14 +24,15 @@
     margin: 0 auto;
   }
 
-button {
-  max-width : 50%;
-}
+  button {
+    max-width: 50%;
+  }
 
-.buttonDiv {
-  display : flex;
-  flex-direction : column;
-  flex-wrap: nowrap;
-  align-items: center;
-  text-align: center;
+  .buttonDiv {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    text-align: center;
+  }
 }

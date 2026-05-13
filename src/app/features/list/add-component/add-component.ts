@@ -1,6 +1,5 @@
 import { Component, signal, inject } from '@angular/core';
 import { ItemService } from '../services/item';
-import { Router } from '@angular/router';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import {
   form,
@@ -13,11 +12,10 @@ import {
   validate,
 } from '@angular/forms/signals';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatAnchor } from '@angular/material/button';
 
 @Component({
   selector: 'app-add-component',
-  imports: [FormField, FormRoot, MatDialogModule, MatAnchor],
+  imports: [FormField, FormRoot, MatDialogModule],
   templateUrl: './add-component.html',
   styleUrl: './add-component.scss',
 })
