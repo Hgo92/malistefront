@@ -31,7 +31,7 @@ export class ListComponent implements OnInit {
   items$: Observable<Item[]> = this.refresh$.pipe(
     startWith(null),
     switchMap(() => this.itemService.getMyItems()),
-    shareReplay(1),
+    shareReplay({ bufferSize: 1, refCount: true }),
   );
 
   activeItems$ = this.items$.pipe(

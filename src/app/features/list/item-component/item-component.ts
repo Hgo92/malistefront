@@ -3,15 +3,13 @@ import { Item } from '../models/item';
 import { CommonModule } from '@angular/common';
 import { ItemService } from '../services/item';
 
-
 @Component({
   selector: 'app-item-component',
   imports: [CommonModule],
   templateUrl: './item-component.html',
   styleUrl: './item-component.scss',
-  standalone: true
+  standalone: true,
 })
-
 export class ItemComponent {
   @Input() item!: Item;
 
@@ -22,18 +20,23 @@ export class ItemComponent {
 
   private readonly itemService = inject(ItemService);
 
-  constructor() {
+  constructor() {}
+
+  handleClick() {
+    if (this.item.isArchived) {
+      this.itemAttached.emit(this.item.id);
+    } else {
+      this.itemDetached.emit(this.item.id);
+    }
   }
 
-  onDetach() { this.itemDetached.emit(this.item.id); }
-  onAttach() { this.itemAttached.emit(this.item.id); }
-  onDelete(event : MouseEvent) { 
+  onDelete(event: MouseEvent) {
     event.stopPropagation();
-    this.itemDeleted.emit(this.item.id); }
+    this.itemDeleted.emit(this.item.id);
+  }
 
-  
   // Ma méthode pour +1 à la quantité
-  onPlus(event:MouseEvent) {
+  onPlus(event: MouseEvent) {
     event.stopPropagation();
     this.itemService.plus(this.item.id).subscribe(() => {
       this.quantityChanged.emit();
@@ -41,9 +44,9 @@ export class ItemComponent {
   }
 
   // Ma méthode pour -1 à la quantité
-  onMinus(event:MouseEvent) {
+  onMinus(event: MouseEvent) {
     event.stopPropagation();
-    if (this.item.quantity <=0) return;
+    if (this.item.quantity <= 0) return;
     this.itemService.minus(this.item.id).subscribe(() => {
       this.quantityChanged.emit();
     });

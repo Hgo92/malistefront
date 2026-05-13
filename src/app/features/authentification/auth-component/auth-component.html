@@ -1,14 +1,11 @@
 <div>
   <h2>Me connecter</h2>
   <form [formRoot]="loginForm">
-    <label
-      >Nom
-      <input type="text" [formField]="loginForm.username" placeholder="Nom d'utilisateur" />
-    </label>
-    <label
-      >Mot de passe
-      <input type="password" [formField]="loginForm.password" placeholder="Mot de passe" />
-    </label>
+    <label for>Nom</label>
+    <input type="text" [formField]="loginForm.username" placeholder="Nom d'utilisateur" />
+
+    <label>Mot de passe</label>
+    <input type="password" [formField]="loginForm.password" placeholder="Mot de passe" />
 
     <div class="buttonDiv">
       <button type="submit">Se connecter</button>

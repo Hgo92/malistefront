@@ -1,12 +1,16 @@
 @use '../../../../styles/variables' as vars;
 
+:host {
+  mat-dialog-content {
+    padding-top: 0 !important;
+    margin-top: 15px !important;
+  }
 
-mat-dialog-content {
-  padding-top: 0 !important;
-  margin-top: 15px !important;
+  [disabled='true'] {
+    background-color: grey;
+  }
+
+  mat-button {
+    background-color: grey;
+  }
 }
-
-.disabled {
-  
-}
-

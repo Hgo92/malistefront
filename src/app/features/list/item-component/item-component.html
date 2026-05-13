@@ -3,7 +3,7 @@
     <button class="delete-btn" (click)="onDelete($event)">🗑️</button>
   }
 
-  <div class="item-main" (click)="item.isArchived ? onAttach() : onDetach()">
+  <div class="item-main" (click)="handleClick()">
     <span class="item-name">{{ item.name }}</span>
   </div>
 

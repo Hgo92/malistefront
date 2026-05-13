@@ -1,17 +1,18 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Auth } from '../services/auth';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogActions, MatDialogClose, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirm-logout-component',
-  imports: [MatDialogModule],
+  imports: [MatDialogClose, MatDialogActions],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './confirm-logout-component.html',
   styleUrl: './confirm-logout-component.scss',
 })
 export class ConfirmLogoutComponent {
   private readonly auth = inject(Auth);
   private readonly dialogRef = inject(MatDialogRef<ConfirmLogoutComponent>);
-  public showLogOut = false;
+  protected showLogOut = false;
 
   // Ma méthode pour me déconnecter
   onLogout() {

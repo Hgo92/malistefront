@@ -13,10 +13,11 @@ import {
   validate,
 } from '@angular/forms/signals';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatAnchor } from '@angular/material/button';
 
 @Component({
   selector: 'app-add-component',
-  imports: [FormField, FormRoot, MatDialogModule],
+  imports: [FormField, FormRoot, MatDialogModule, MatAnchor],
   templateUrl: './add-component.html',
   styleUrl: './add-component.scss',
 })
