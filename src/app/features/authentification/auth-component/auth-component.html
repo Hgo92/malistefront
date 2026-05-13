@@ -1,29 +1,19 @@
 <div>
   <h2>Me connecter</h2>
-    <form [formRoot]="loginForm">
-    <label>Nom
-      <input type="text" [formField]="loginForm.username" placeholder="Nom d'utilisateur"/>
+  <form [formRoot]="loginForm">
+    <label
+      >Nom
+      <input type="text" [formField]="loginForm.username" placeholder="Nom d'utilisateur" />
     </label>
-    <label>Mot de passe
-      <input type="password" [formField]="loginForm.password" placeholder="Mot de passe"/>
+    <label
+      >Mot de passe
+      <input type="password" [formField]="loginForm.password" placeholder="Mot de passe" />
     </label>
 
     <div class="buttonDiv">
-    <button type="submit">
-      <span class="shadow"></span>
-      <span class="edge"></span>
-      <div class="front">
-        <span>Se connecter</span>
-      </div>
-    </button>
-    
-    <button (click)="onCancel()">
-      <span class="shadow"></span>
-      <span class="edge"></span>
-      <div class="front">
-        <span>Annuler</span>
-      </div>
-    </button>
-  </div>
-  
-</form>
+      <button type="submit">Se connecter</button>
+
+      <button (click)="onCancel()">Annuler</button>
+    </div>
+  </form>
+</div>

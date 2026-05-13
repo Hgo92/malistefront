@@ -1,32 +1,28 @@
 <div>
   <h2>Créer mon compte</h2>
   <form [formRoot]="registerForm">
-    <label>Nom
-      <input type="text" [formField]="registerForm.username" placeholder="Nom d'utilisateur"/>
+    <label
+      >Nom
+      <input type="text" [formField]="registerForm.username" placeholder="Nom d'utilisateur" />
+      @if (registerForm.username().touched() && registerForm.username().invalid()) {
+        @for (error of registerForm.username().errors(); track error) {
+          <p style="color: red">{{ error.message }}</p>
+        }
+      }
     </label>
-    <label>Mot de passe
-      <input type="password" [formField]="registerForm.password" placeholder="Mot de passe"/>
+    <label
+      >Mot de passe
+      <input type="password" [formField]="registerForm.password" placeholder="Mot de passe" />
+      @if (registerForm.password().touched() && registerForm.password().invalid()) {
+        @for (error of registerForm.password().errors(); track error) {
+          <p style="color: red">{{ error.message }}</p>
+        }
+      }
     </label>
 
     <div class="buttonDiv">
-    <button type="submit">
-      <span class="shadow"></span>
-      <span class="edge"></span>
-      <div class="front">
-        <span>S'inscrire</span>
-      </div>
-    </button>
-    
-    <button (click)="onCancel()">
-      <span class="shadow"></span>
-      <span class="edge"></span>
-      <div class="front">
-        <span>Annuler</span>
-      </div>
-    </button>
-  </div>
-  
-</form>
-
-
+      <button type="submit">S'inscrire</button>
+      <button (click)="onCancel()">Annuler</button>
+    </div>
+  </form>
 </div>

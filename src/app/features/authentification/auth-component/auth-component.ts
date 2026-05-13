@@ -1,15 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from '../services/auth';
-import {
-  FormField,
-  FormRoot,
-  form,
-  maxLength,
-  minLength,
-  required,
-  validate,
-} from '@angular/forms/signals';
+import { FormField, FormRoot, form, required } from '@angular/forms/signals';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
