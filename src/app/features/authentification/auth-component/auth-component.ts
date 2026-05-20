@@ -41,7 +41,7 @@ export class AuthComponent {
               });
             },
             error: (err) => {
-              this.snackBar.open('Erreur de connexion', 'Fermer', {
+              this.snackBar.open('Erreur de connexion (vérifiez vos identifiants)', 'Fermer', {
                 duration: 3000,
                 panelClass: ['snackbar-error'],
               });

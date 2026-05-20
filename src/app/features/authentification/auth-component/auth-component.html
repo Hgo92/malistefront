@@ -3,14 +3,14 @@
   <form [formRoot]="loginForm">
     <label for>Nom</label>
     <input type="text" [formField]="loginForm.username" placeholder="Nom d'utilisateur" />
-    @if (loginForm.username().touched() && loginForm.username().invalid()) {
+    @if (loginForm.username().touched() || loginForm.username().invalid()) {
       @for (error of loginForm.username().errors(); track error) {
         <p>{{ error.message }}</p>
       }
     }
     <label>Mot de passe</label>
     <input type="password" [formField]="loginForm.password" placeholder="Mot de passe" />
-    @if (loginForm.password().touched() && loginForm.password().invalid()) {
+    @if (loginForm.password().touched() || loginForm.password().invalid()) {
       @for (error of loginForm.password().errors(); track error) {
         <p>{{ error.message }}</p>
       }
