@@ -1,10 +1,14 @@
 button {
-  max-width : 50%;
+  max-width: 50%;
 }
 
 .buttonDiv {
-  display : flex;
-  flex-direction : column;
+  display: flex;
+  flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
+}
+
+p {
+  color: red;
 }

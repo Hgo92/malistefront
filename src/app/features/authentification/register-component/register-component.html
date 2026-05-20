@@ -6,7 +6,7 @@
       <input type="text" [formField]="registerForm.username" placeholder="Nom d'utilisateur" />
       @if (registerForm.username().touched() && registerForm.username().invalid()) {
         @for (error of registerForm.username().errors(); track error) {
-          <p style="color: red">{{ error.message }}</p>
+          <p>{{ error.message }}</p>
         }
       }
     </label>
@@ -15,7 +15,7 @@
       <input type="password" [formField]="registerForm.password" placeholder="Mot de passe" />
       @if (registerForm.password().touched() && registerForm.password().invalid()) {
         @for (error of registerForm.password().errors(); track error) {
-          <p style="color: red">{{ error.message }}</p>
+          <p>{{ error.message }}</p>
         }
       }
     </label>

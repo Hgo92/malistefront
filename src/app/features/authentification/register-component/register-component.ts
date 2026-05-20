@@ -46,12 +46,12 @@ export class RegisterComponent {
       });
 
       required(schemaPath.password);
-      minLength(schemaPath.password, 8, { message: 'Mot de passe trop court (8 caractères)' });
+      minLength(schemaPath.password, 8);
       validate(schemaPath.password, ({ value }) => {
         if (value().trim().length === 0) {
           return {
             kind: 'whitespace',
-            message: 'Votre mot de passe ne doit pas être vide',
+            message: 'Mot de passe trop court (8 caractères)',
           };
         }
         return null;
