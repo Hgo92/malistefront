@@ -1,14 +1,18 @@
-button {
-  max-width: 50%;
-}
+:host {
+  button {
+    max-width: 50%;
+  }
 
-.buttonDiv {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: center;
-}
+  .buttonDiv {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
 
-p {
-  color: red;
+  p {
+    color: red;
+    margin-top: 0;
+    padding-top: 0;
+  }
 }
