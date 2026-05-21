@@ -30,6 +30,14 @@ app-root {
   min-height: 35dvh;
 }
 
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0.7;
+}
+
 h1,
 h2,
 h3 {
