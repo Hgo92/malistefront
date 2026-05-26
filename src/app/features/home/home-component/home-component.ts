@@ -9,7 +9,6 @@ import { Auth } from '../../authentification/services/auth';
   styleUrl: './home-component.scss',
 })
 export class HomeComponent {
-
   private readonly auth = inject(Auth);
   private readonly router = inject(Router);
 
@@ -24,10 +23,9 @@ export class HomeComponent {
   }
 
   toTest() {
-    this.auth.login('Invité', 'mdpTestInvité').subscribe({
+    this.auth.login('Invité', 'mdpTestInvite').subscribe({
       next: () => this.router.navigate(['/list']),
-      error : () => console.error('Identifiants incorrects')
+      error: () => console.error('Identifiants incorrects'),
     });
   }
-
 }
